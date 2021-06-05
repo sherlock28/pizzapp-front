@@ -3,7 +3,10 @@ import { Route, Switch } from "wouter";
 import { HomePage } from "pages/Home";
 
 export function Routes() {
-  return <Switch>
+  return (
+    <Switch>
       <Route path="/" component={HomePage} exact />
-  </Switch>;
+      <Route>404, Not Found!</Route>
+    </Switch>
+  );
 }
