@@ -2,8 +2,8 @@ import { getAllProducts } from './products/getAllProducts';
 import { getAllProductsById } from './products/getProductById';
 
 import { signUpService } from "./auth/signUpService";
-// import {  } from "./auth/signInService";
-// import {  } from "./auth/signOutService";
+import { signInService } from "./auth/signInService";
+import { signOutService } from "./auth/signOutService";
 
 export const {
     products: {
@@ -11,6 +11,6 @@ export const {
         getAllProductsById
     },
     auth: {
-        signUpService
+        signUpService, signInService, signOutService
     }
 }
