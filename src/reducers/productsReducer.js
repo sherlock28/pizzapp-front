@@ -20,6 +20,9 @@ export const productsReducer = createSlice({
         state.loading = true;
       }
     },
+    currentProduct: (state, action) => {
+      state.product = action.payload;
+    },
     fetchFailed: (state, action) => {
       if (state.loading === true) {
         state.loading = false;
@@ -29,8 +32,12 @@ export const productsReducer = createSlice({
   },
 });
 
-export const { productsReceived, productsLoading, fetchFailed } =
-  productsReducer.actions;
+export const {
+  productsReceived,
+  productsLoading,
+  currentProduct,
+  fetchFailed,
+} = productsReducer.actions;
 
 export const fetchAllProducts = () => async dispath => {
   dispath(productsLoading());
@@ -40,6 +47,10 @@ export const fetchAllProducts = () => async dispath => {
   } catch (err) {
     dispath(fetchFailed(err.toString()));
   }
+};
+
+export const getCurrentProduct = product => dispatch => {
+  dispatch(currentProduct(product));
 };
 
 export default productsReducer.reducer;
