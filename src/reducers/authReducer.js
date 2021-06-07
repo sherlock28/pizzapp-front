@@ -27,26 +27,25 @@ export const authReducer = createSlice({
       state.loading = false;
       state.error = null;
     },
-    failed: (state, action) => {
+    authFailed: (state, action) => {
       state.loading = false;
       state.error = action.payload.message;
     },
   },
 });
 
-export const { authLoading, loginSuccess, failed } = authReducer.actions;
+export const { authLoading, loginSuccess, authFailed } = authReducer.actions;
 
-export const loginAction =
-  ({ email, password }) =>
-  async dispatch => {
-    dispatch(authLoading());
-    try {
-      const response = await auth.signInService({ email, password });
-      dispatch(loginSuccess(response));
-    } catch (err) {
-      dispatch(failed(error.message));
-    }
-  };
+export const loginAction = data => async dispatch => {
+  dispatch(authLoading());
+  try {
+    const { email, password } = data;
+    const response = await auth.signInService({ email, password });
+    dispatch(loginSuccess(response));
+  } catch (err) {
+    dispatch(authFailed(err.message));
+  }
+};
 
 export const registerAction = data => async dispatch => {
   dispatch(authLoading());
@@ -54,7 +53,7 @@ export const registerAction = data => async dispatch => {
     const response = await auth.signUpService({ body: data });
     dispatch(registerAction(response));
   } catch (err) {
-    dispatch(failed(err.message));
+    dispatch(authFailed(err.message));
   }
 };
 
