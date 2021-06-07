@@ -34,7 +34,8 @@ export const authReducer = createSlice({
   },
 });
 
-export const { authLoading, loginSuccess, authFailed } = authReducer.actions;
+export const { authLoading, loginSuccess, registerSuccess, authFailed } =
+  authReducer.actions;
 
 export const loginAction = data => async dispatch => {
   dispatch(authLoading());
@@ -51,7 +52,7 @@ export const registerAction = data => async dispatch => {
   dispatch(authLoading());
   try {
     const response = await auth.signUpService({ body: data });
-    dispatch(registerAction(response));
+    dispatch(registerSuccess(response));
   } catch (err) {
     dispatch(authFailed(err.message));
   }
