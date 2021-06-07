@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { auth } from "services";
 
 export const authReducer = createSlice({
   name: "auth",
@@ -22,6 +23,10 @@ export const authReducer = createSlice({
       state.isLoggedIn = true;
       state.error = null;
     },
+    registerSuccess: (state, action) => {
+      state.loading = false;
+      state.error = null;
+    },
     failed: (state, action) => {
       state.loading = false;
       state.error = action.payload.message;
@@ -36,12 +41,21 @@ export const loginAction =
   async dispatch => {
     dispatch(authLoading());
     try {
-      const response = await fetch("");
-      const res = await response.json();
-      dispatch(loginSuccess(res));
+      const response = await auth.signInService({ email, password });
+      dispatch(loginSuccess(response));
     } catch (err) {
-      dispatch(failed(err));
+      dispatch(failed(error.message));
     }
   };
+
+export const registerAction = data => async dispatch => {
+  dispatch(authLoading());
+  try {
+    const response = await auth.signUpService({ body: data });
+    dispatch(registerAction(response));
+  } catch (err) {
+    dispatch(failed(err.message));
+  }
+};
 
 export default authReducer.reducer;

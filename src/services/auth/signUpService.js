@@ -9,5 +9,6 @@ export function signUpService({ body }) {
     body: JSON.stringify(body),
   })
     .then(response => response)
+    .then(res => res.json())
     .catch(err => err);
 }
