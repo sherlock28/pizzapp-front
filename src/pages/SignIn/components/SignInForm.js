@@ -31,7 +31,6 @@ export function SignInForm() {
   const handleClick = () => setShow(!show);
 
   const onSubmit = data => {
-    console.log(data.remindMe);
     dispatch(loginAction(data));
   };
 
