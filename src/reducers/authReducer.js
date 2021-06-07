@@ -28,3 +28,20 @@ export const authReducer = createSlice({
     },
   },
 });
+
+export const { authLoading, loginSuccess, failed } = authReducer.actions;
+
+export const loginAction =
+  ({ email, password }) =>
+  async dispatch => {
+    dispatch(authLoading());
+    try {
+      const response = await fetch("");
+      const res = await response.json();
+      dispatch(loginSuccess(res));
+    } catch (err) {
+      dispatch(failed(err));
+    }
+  };
+
+export default authReducer.reducer;
