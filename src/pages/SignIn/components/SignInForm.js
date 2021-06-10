@@ -36,7 +36,7 @@ export function SignInForm() {
 
   return (
     <>
-      <Box my={8} textAlign="left">
+      <Box textAlign="left">
         <form>
           <FormControl m={2} isInvalid={errors.email}>
             <FormLabel>Ingresá tu email</FormLabel>
@@ -77,7 +77,7 @@ export function SignInForm() {
             </Box>
             <Box>
               <Link to="/forgetterpass">
-                <LinkChakra color="teal.500">
+                <LinkChakra color="#FB8B24">
                   ¿Olvidaste tu contraseña?
                 </LinkChakra>
               </Link>
@@ -87,7 +87,7 @@ export function SignInForm() {
           <Center>
             <Button
               onClick={handleSubmit(onSubmit)}
-              colorScheme={"twitter"}
+              bg="#E36414"
               type="submit"
               isLoading={isSubmitting}
               width="60%"

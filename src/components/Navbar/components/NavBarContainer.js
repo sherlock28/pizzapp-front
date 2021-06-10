@@ -11,8 +11,7 @@ export const NavBarContainer = ({ children, ...props }) => {
       w="100%"
       mb={8}
       p={8}
-      bg="#e1701a"
-      color="blackAlpha.200"
+      bg="#FB8B24"
       {...props}
     >
       {children}

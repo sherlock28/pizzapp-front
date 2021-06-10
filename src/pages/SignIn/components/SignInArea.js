@@ -5,7 +5,7 @@ import { SignInForm } from "./SignInForm";
 
 export function SignInArea() {
   return (
-    <Flex minHeight="100vh" width="full" align="center" justifyContent="center">
+    <Flex width="full" align="center" justifyContent="center" my={8}>
       <Box
         borderWidth={1}
         px={4}

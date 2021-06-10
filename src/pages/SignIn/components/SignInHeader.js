@@ -8,8 +8,8 @@ export function SignInHeader() {
       <Heading>Accedé a tu cuenta</Heading>
       <Text mt={4}>
         ¿Todavía no tenés cuenta en Pizzapp?{" "}
-        <Link to="/signup">
-          <LinkChakra color="teal.500">Clic aquí</LinkChakra>
+        <Link to="/register">
+          <LinkChakra color="#FB8B24">Clic aquí</LinkChakra>
         </Link>
       </Text>
     </Box>

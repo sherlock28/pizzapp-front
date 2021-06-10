@@ -41,7 +41,7 @@ export function SignUpForm() {
 
   return (
     <>
-      <Box my={8} textAlign="left">
+      <Box textAlign="left">
         <form>
           <Flex direction={["column", "column", "row", "row", "row"]}>
             <FormControl m={2} isInvalid={errors.username}>
@@ -141,7 +141,7 @@ export function SignUpForm() {
           <Center>
             <Button
               onClick={handleSubmit(onSubmit)}
-              colorScheme={"twitter"}
+              bg="#E36414"
               type="submit"
               isLoading={isSubmitting}
               width="60%"

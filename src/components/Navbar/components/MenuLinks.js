@@ -22,16 +22,19 @@ export function MenuLinks({ isOpen }) {
         <MenuItem to="/">Inicio</MenuItem>
         <MenuItem to="/contacts">Contactos</MenuItem>
         <Button
-          colorScheme="teal"
+          color="white"
           size="md"
-          variant="ghost"
+          variant="link"
           onClick={() => setLocation("/login")}
           minW={"140px"}
+          _focus={{
+            border: "none",
+          }}
         >
           Iniciar sesión
         </Button>
         <Button
-          colorScheme="teal"
+          bg="#E36414"
           size="md"
           onClick={() => setLocation("/register")}
           minW={"140px"}

@@ -6,10 +6,10 @@ import { SignUpForm } from "./SignUpForm";
 export function SignUpArea() {
   return (
     <Flex
-      minHeight="100vh"
       width="full"
       align="center"
       justifyContent="center"
+      my={8}
     >
       <Box
         borderWidth={1}
