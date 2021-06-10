@@ -6,11 +6,13 @@ import { SignUpPage } from "pages/SignUp";
 
 export function Routes() {
   return (
-    <Switch>
-      <Route path="/" component={HomePage} exact />
-      <Route path="/login" component={SignInPage} exact />
-      <Route path="/register" component={SignUpPage} exact />
-      <Route>404, Not Found!</Route>
-    </Switch>
+    <>
+      <Switch>
+        <Route path="/" component={HomePage} exact />
+        <Route path="/login" component={SignInPage} exact />
+        <Route path="/register" component={SignUpPage} exact />
+        <Route>404, Not Found!</Route>
+      </Switch>
+    </>
   );
 }
