@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function MyAccount() {
+export function MyAccount() {
   return <div></div>;
 }
