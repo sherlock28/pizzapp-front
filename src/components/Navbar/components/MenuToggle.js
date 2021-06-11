@@ -6,9 +6,9 @@ export const MenuToggle = ({ toggle, isOpen }) => {
   return (
     <Box display={{ base: "block", md: "none" }} onClick={toggle}>
       {isOpen ? (
-        <CloseIcon color={"#f6dcbf"} />
+        <CloseIcon color="white" w={6} h={6} />
       ) : (
-        <HamburgerIcon color={"#f6dcbf"} />
+        <HamburgerIcon color="white" w={6} h={6} />
       )}
     </Box>
   );
