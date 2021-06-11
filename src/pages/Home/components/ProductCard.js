@@ -8,17 +8,23 @@ export function ProductCard() {
         imageAlt: "Rear view of modern home with pool",
         beds: 3,
         baths: 2,
-        title: "Modern home in city center in the heart of historic Los Angeles",
-        formattedPrice: "$1,900.00",
+        title: "Pizza Margherita",
+        formattedPrice: "$200",
         reviewCount: 34,
         rating: 4,
     }
 
     return (
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" _hover={{
-            boxShadow:
-                "1px 0px 12px 0px rgba(50, 50, 50, 0.73)"
-        }}>
+        <Box
+            maxW="sm"
+            borderWidth="1px"
+            borderRadius="lg"
+            overflow="hidden"
+            transition="box-shadow 0.6s ease-out;"
+            _hover={{
+                boxShadow:
+                    "1px 0px 12px 0px rgba(50, 50, 50, 0.73)"
+            }}>
             <Image src={property.imageUrl} alt={property.imageAlt} />
 
             <Box p="6">
@@ -34,9 +40,7 @@ export function ProductCard() {
 
                 <Box>
                     {property.formattedPrice}
-                    <Box as="span" color="gray.600" fontSize="sm">
-                        / wk
-                    </Box>
+                    <Box as="span" color="gray.600" fontSize="sm" />
                 </Box>
 
                 <Box d="flex" mt="2" alignItems="center">
