@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { products } from "services";
 
 export const productsReducer = createSlice({
   name: "publication",
@@ -42,8 +43,8 @@ export const {
 export const fetchAllProducts = () => async dispath => {
   dispath(productsLoading());
   try {
-    const allProducts = await fetch("");
-    dispath(productsReceived(allProducts));
+    const allProducts = await products.getAllProducts();
+    dispath(productsReceived(allProducts.data.products));
   } catch (err) {
     dispath(fetchFailed(err.toString()));
   }

@@ -2,16 +2,8 @@ import React from "react";
 import { Box, Image, Text } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 
-export function ProductCard() {
-    const property = {
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/6/67/Eataly_Las_Vegas_-_Feb_2019_-_Stierch_12.jpg",
-        title: "Pizza Margherita",
-        formattedPrice: "$200",
-        off: "10%",
-        reviewCount: 34,
-        rating: 4,
-    }
-
+export function ProductCard({ product }) {
+    
     return (
         <Box
             maxW="sm"
@@ -23,7 +15,7 @@ export function ProductCard() {
                 boxShadow:
                     "1px 0px 12px 0px rgba(50, 50, 50, 0.73)"
             }} >
-            <Image src={property.imageUrl} alt={property.title} />
+            <Image boxSize="300px" src={product.imageURL} alt={product.name} objectFit="cover" />
 
             <Box p="6">
                 <Box
@@ -33,15 +25,15 @@ export function ProductCard() {
                     lineHeight="tight"
                     isTruncated
                 >
-                    {property.title}
+                    {product.name}
                 </Box>
 
                 <Box>
                     <Text fontSize="2xl">
-                        {property.formattedPrice}
-                        <Box as="span" color="#00a650" fontSize="sm">
-                            {`   ${property.off} OFF`}
-                        </Box>
+                        ${product.price}
+                        {product.off && <Box as="span" color="#00a650" fontSize="sm">
+                            {`   ${product.off} OFF`}
+                        </Box>}
                     </Text>
                 </Box>
 
@@ -51,11 +43,11 @@ export function ProductCard() {
                         .map((_, i) => (
                             <StarIcon
                                 key={i}
-                                color={i < property.rating ? "teal.500" : "gray.300"}
+                                color={i < product.rating ? "teal.500" : "gray.300"}
                             />
                         ))}
                     <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                        {property.reviewCount} reviews
+                        {product.reviewCount} reviews
                     </Box>
                 </Box>
             </Box>
