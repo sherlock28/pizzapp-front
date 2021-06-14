@@ -4,7 +4,7 @@ import { Link, useLocation } from "wouter";
 
 export const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   const [location] = useLocation();
-  const color = location === to ? "#E36414" : "white";
+  const color = location === to ? "#cd6133" : "white";
 
   return (
     <Link to={to}>

@@ -8,12 +8,14 @@ export function Footer() {
         <Box w="100%" bg="#FB8B24" mt={16} p={8}>
             <SimpleGrid columns={[2, 2, 2, 2]} spacing={20}>
                 <ColumnSections
+                    color="white"
                     _hover={{
-                        color: "#E36414"
+                        color: "#cd6133"
                     }} />
                 <ColumnContacts
+                    color="white"
                     _hover={{
-                        color: "#E36414"
+                        color: "#cd6133"
                     }} />
             </SimpleGrid>
             <Flex pt={4} direction="column" alignItems="center">
