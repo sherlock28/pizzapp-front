@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Heading, Box, SimpleGrid, Skeleton, SkeletonText } from "@chakra-ui/react";
+import { Heading, Box, SimpleGrid } from "@chakra-ui/react";
 import { ProductCard } from "./components/ProductCard";
 import { SearchForm } from "./components/SearchForm";
 import { LoadingSkeleton } from "./components/LoadingSkeleton";
