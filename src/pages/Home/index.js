@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
-import { Heading, Box, SimpleGrid } from "@chakra-ui/react";
+import { Heading, Box, SimpleGrid, Skeleton, SkeletonText } from "@chakra-ui/react";
 import { ProductCard } from "./components/ProductCard";
 import { SearchForm } from "./components/SearchForm";
+import { LoadingSkeleton } from "./components/LoadingSkeleton";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllProducts } from "reducers/productsReducer";
 
 export function HomePage() {
-  const listProducts = useSelector(state => state.products.products)
+  const listProducts = useSelector(state => state.products.products);
+  const loading = useSelector(state => state.products.loading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,9 +21,12 @@ export function HomePage() {
       <SearchForm />
     </Box>
     <SimpleGrid columns={[1, 1, 2, 3]} spacing={10}>
-      {listProducts.map(product => {
-        return <ProductCard product={product} />
-      })}
+      {loading ?
+        <LoadingSkeleton /> :
+        listProducts.map(product => {
+          return <ProductCard product={product} />
+        })
+      }
     </SimpleGrid>
   </>;
 }
