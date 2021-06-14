@@ -12,7 +12,7 @@ export const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
         py={[3, 3, 1, 1]}
         display="block"
         color={color}
-        fontSize={{ base: "15px", sm: "15px", md: "20px", lg: "20px" }}
+        fontSize={{ base: "16px", sm: "16px", md: "16px", lg: "16px" }}
         _hover={{
           cursor: "pointer",
         }}
