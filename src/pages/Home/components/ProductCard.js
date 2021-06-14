@@ -57,7 +57,7 @@ export function ProductCard({ product }) {
 
             <Flex justify="center">
                 <Button m={4} w="80%" bg="#fa8231" size="sm" color="white">
-                    Agregar al carro
+                    Agregar al carrito
                 </Button>
             </Flex>
 
