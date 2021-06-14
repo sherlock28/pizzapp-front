@@ -56,7 +56,16 @@ export function ProductCard({ product }) {
             </Link>
 
             <Flex justify="center">
-                <Button m={4} w="80%" bg="#fa8231" size="sm" color="white">
+                <Button
+                    m={4}
+                    w="80%"
+                    bg="#fa8231"
+                    size="sm"
+                    color="white"
+                    _hover={{
+                        background: "#ffaf40",
+                        color: "black"
+                    }}>
                     Agregar al carrito
                 </Button>
             </Flex>

@@ -1,23 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Image, Center, Text, Flex, Button } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
+import { useRoute } from "wouter";
+import { products } from "services";
 
-const property = {
-  imageURL: "https://res.cloudinary.com/dfzlexoul/image/upload/v1623682093/pizza-ternera_wifckn.jpg",
-  name: "Pizza Napolitana",
-  description: "La pizza napolitana tiene una masa tierna y delgada cuyos bordes son altos está reconocida como producto agroalimentario tradicional italiano.Las primeras referencias sobre esta pizza datan de mediados del siglo XVIII donde Vincenzo Corrado escribió un valioso tratado sobre los hábitos alimenticios de la ciudad de Nápoles, donde observo que la gente tenía por costumbre de guarnecer la pizza y los macarrones con tomate. Las primeras pizzerías aparecieron en Nápoles durante el siglo XIX y hasta mediados del siglo XX era un fenómeno exclusivo de esa ciudad.",
-  price: "200",
-  off: "10",
-  reviewCount: 34,
-  rating: 4,
-}
 
 export function DetailPage() {
+  const [_, params] = useRoute("/detail/:id");
+  const [product, setProduct] = useState(null);
+
+
+  useEffect(() => {
+    const { id } = params
+    products.getAllProductsById({ idProduct: id })
+      .then(res => {
+        setProduct(res.data.product)
+      })
+  }, [])
+
+
+  if (product === null) return null;
+
+
   return (
     <Flex w="100%" mt={10} flexDir={["column", "column", "row", "row", "row"]}>
 
       <Box w={["100%", "100%", "30%", "30%", "30%"]} m="auto" boxSize={["340px", "340px", "340px", "500px", "500px"]}>
-        <Image src={property.imageURL} alt={property.name} />
+        <Image src={product.imageURL} alt={product.name} />
       </Box>
 
       <Box w={["100%", "100%", "70%", "70%", "70%"]} ml={[0, 0, 8, 8, 8]} >
@@ -27,26 +36,27 @@ export function DetailPage() {
             fontSize={22}
             as="h2"
             lineHeight="tight">
-            {property.name}
+            {product.name}
           </Text>
         </Box>
         <Box mt={2}>
           <Text
             fontSize={16}
+            as="p"
             lineHeight="tight"
             textAlign="justify"
           >
-            {property.description}
+            {product.description}
           </Text>
         </Box>
 
 
         <Box d="flex" mt={4}>
           <Text fontSize={36}>
-            ${property.price}
+            ${product.price}
           </Text>
-          {property.off && <Text as="span" mt={2} ml={1} fontSize={20} color="#00a650">
-            {`   ${property.off} OFF`}
+          {product.off && <Text as="span" mt={2} ml={1} fontSize={20} color="#00a650">
+            {`   ${product.off} OFF`}
           </Text>}
         </Box>
 
@@ -56,11 +66,11 @@ export function DetailPage() {
             .map((_, i) => (
               <StarIcon
                 key={i}
-                color={i < property.rating ? "#fa983a" : "gray.300"}
+                color={i < product.rating ? "#fa983a" : "gray.300"}
               />
             ))}
           <Box as="span" ml="2" color="gray.600" fontSize="sm">
-            {property.reviewCount} reviews
+            {product.reviewCount} reviews
           </Box>
         </Box>
 

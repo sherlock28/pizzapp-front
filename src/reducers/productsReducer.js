@@ -21,6 +21,10 @@ export const productsReducer = createSlice({
         state.loading = true;
       }
     },
+    findProduct: (state, action) => {
+      const product = state.products.filter(p => p._id === action.payload);
+      state.product = product[0];
+    },
     currentProduct: (state, action) => {
       state.product = action.payload;
     },
@@ -36,6 +40,7 @@ export const productsReducer = createSlice({
 export const {
   productsReceived,
   productsLoading,
+  findProduct,
   currentProduct,
   fetchFailed,
 } = productsReducer.actions;

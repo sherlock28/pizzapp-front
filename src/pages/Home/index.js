@@ -24,7 +24,7 @@ export function HomePage() {
       {loading ?
         <LoadingSkeleton /> :
         listProducts.map(product => {
-          return <ProductCard product={product} />
+          return <ProductCard product={product} key={product._id}/>
         })
       }
     </SimpleGrid>
