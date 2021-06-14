@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Image, Center, Text, Flex, Button } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
+import { LoadingSkeleton } from "./components/LoadingSkeleton";
 import { useRoute } from "wouter";
 import { products } from "services";
 
@@ -19,14 +20,15 @@ export function DetailPage() {
   }, [])
 
 
-  if (product === null) return null;
-
+  if (product === null) {
+    return <LoadingSkeleton />
+  };
 
   return (
     <Flex w="100%" mt={10} flexDir={["column", "column", "row", "row", "row"]}>
 
-      <Box w={["100%", "100%", "30%", "30%", "30%"]} m="auto" boxSize={["340px", "340px", "340px", "500px", "500px"]}>
-        <Image src={product.imageURL} alt={product.name} />
+      <Box w={["100%", "100%", "30%", "30%", "30%"]} m="auto" >
+        <Image boxSize="300px" src={product.imageURL} alt={product.name} objectFit="cover" />
       </Box>
 
       <Box w={["100%", "100%", "70%", "70%", "70%"]} ml={[0, 0, 8, 8, 8]} >

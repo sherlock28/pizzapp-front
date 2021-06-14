@@ -5,7 +5,12 @@ import { ColumnContacts } from "./components/ColumnContacts";
 
 export function Footer() {
     return (
-        <Box w="100%" bg="#FB8B24" mt={16} p={8}>
+        <Box
+            w="100%"
+            bg="#FB8B24"
+            mt={16}
+            p={8}>
+
             <SimpleGrid columns={[2, 2, 2, 2]} spacing={20}>
                 <ColumnSections
                     color="white"
