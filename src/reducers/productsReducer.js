@@ -49,7 +49,9 @@ export const fetchAllProducts = () => async dispath => {
   dispath(productsLoading());
   try {
     const allProducts = await products.getAllProducts();
-    dispath(productsReceived(allProducts.data.products));
+    if(allProducts.length != 0) {
+      dispath(productsReceived(allProducts.data.products));
+    }
   } catch (err) {
     dispath(fetchFailed(err.toString()));
   }
