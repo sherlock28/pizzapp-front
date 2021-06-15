@@ -15,8 +15,10 @@ export function DetailPage() {
     const { id } = params
     products.getAllProductsById({ idProduct: id })
       .then(res => {
-        setProduct(res.data.product)
+        res.length > 0 ?
+          setProduct(res.data.product) : setProduct(null);
       })
+      .catch(err => console.error(err));
   }, [])
 
 

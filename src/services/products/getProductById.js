@@ -4,5 +4,8 @@ export function getAllProductsById({ idProduct }) {
   return fetch(`${API_URL}/product/${idProduct}`)
     .then(response => response.json())
     .then(res => res)
-    .catch(err => err);
+    .catch(err => {
+      console.error(err);
+      return [];
+    });
 }
