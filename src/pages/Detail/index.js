@@ -7,6 +7,7 @@ import { products } from "services";
 
 
 export function DetailPage() {
+  // eslint-disable-next-line 
   const [_, params] = useRoute("/detail/:id");
   const [product, setProduct] = useState(null);
 
@@ -15,11 +16,11 @@ export function DetailPage() {
     const { id } = params
     products.getAllProductsById({ idProduct: id })
       .then(res => {
-        res.length > 0 ?
-          setProduct(res.data.product) : setProduct(null);
+        // res === [] ? setProduct(null) :
+        setProduct(res.data.product);
       })
       .catch(err => console.error(err));
-  }, [])
+  }, [params])
 
 
   if (product === null) {

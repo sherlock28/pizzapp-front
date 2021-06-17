@@ -49,7 +49,7 @@ export const fetchAllProducts = () => async dispath => {
   dispath(productsLoading());
   try {
     const allProducts = await products.getAllProducts();
-    if(allProducts.length != 0) {
+    if (allProducts.length !== 0) {
       dispath(productsReceived(allProducts.data.products));
     }
   } catch (err) {
