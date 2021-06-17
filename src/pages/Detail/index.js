@@ -16,11 +16,12 @@ export function DetailPage() {
     const { id } = params
     products.getAllProductsById({ idProduct: id })
       .then(res => {
-        // res === [] ? setProduct(null) :
-        setProduct(res.data.product);
+        res === [] ? setProduct(null) :
+          setProduct(res.data.product);
       })
       .catch(err => console.error(err));
-  }, [params])
+    // eslint-disable-next-line
+  }, []);
 
 
   if (product === null) {
