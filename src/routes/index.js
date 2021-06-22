@@ -5,7 +5,8 @@ import { SignInPage } from "pages/SignIn";
 import { SignUpPage } from "pages/SignUp";
 import { ContactsPage } from "pages/Contacts";
 import { DetailPage } from "pages/Detail";
-import { MyAccount } from "pages/MyAccount";
+import { MyAccountPage } from "pages/MyAccount";
+import { CartPage } from "pages/Cart";
 
 export function Routes() {
   return (
@@ -16,7 +17,8 @@ export function Routes() {
         <Route path="/register" component={SignUpPage} exact />
         <Route path="/contacts" component={ContactsPage} exact />
         <Route path="/detail/:id" component={DetailPage} exact />
-        <Route path="/account" component={MyAccount} exact />
+        <Route path="/account" component={MyAccountPage} exact />
+        <Route path="/cart" component={CartPage} exact />
         <Route>404, Not Found!</Route>
       </Switch>
     </>

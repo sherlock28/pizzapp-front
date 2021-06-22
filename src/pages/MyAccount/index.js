@@ -1,5 +1,5 @@
 import React from "react";
 
-export function MyAccount() {
+export function MyAccountPage() {
   return <div>Mi cuenta</div>;
 }
