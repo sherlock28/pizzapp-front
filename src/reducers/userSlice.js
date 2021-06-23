@@ -1,19 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { auth } from "services";
 
-export const authSlice = createSlice({
-  name: "auth",
+export const userSlice = createSlice({
+  name: "user",
   initialState: {
     isLoggedIn: false,
     user: null,
     token: null,
-    loading: false,
-    error: null,
+    isFetching: false,
+    isSuccess: false,
+    isError: false,
+    errorMessage: '',
   },
   reducers: {
     authLoading: (state, action) => {
-      if (state.loading === false) {
-        state.loading = true;
+      if (state.isFetching === false) {
+        state.isFetching = true;
       }
     },
     loginSuccess: (state, action) => {
@@ -35,7 +37,7 @@ export const authSlice = createSlice({
 });
 
 export const { authLoading, loginSuccess, registerSuccess, authFailed } =
-  authSlice.actions;
+  userSlice.actions;
 
 export const loginAction = data => async dispatch => {
   dispatch(authLoading());
@@ -58,4 +60,4 @@ export const registerAction = data => async dispatch => {
   }
 };
 
-export default authSlice.reducer;
+export const userSelector = (state) => state.user;
