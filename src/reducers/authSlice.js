@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { auth } from "services";
 
-export const authReducer = createSlice({
+export const authSlice = createSlice({
   name: "auth",
   initialState: {
     isLoggedIn: false,
@@ -35,7 +35,7 @@ export const authReducer = createSlice({
 });
 
 export const { authLoading, loginSuccess, registerSuccess, authFailed } =
-  authReducer.actions;
+  authSlice.actions;
 
 export const loginAction = data => async dispatch => {
   dispatch(authLoading());
@@ -58,4 +58,4 @@ export const registerAction = data => async dispatch => {
   }
 };
 
-export default authReducer.reducer;
+export default authSlice.reducer;

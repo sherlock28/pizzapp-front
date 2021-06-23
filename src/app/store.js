@@ -3,10 +3,10 @@ import { combineReducers } from "redux";
 import thunk from 'redux-thunk';
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import productsReducer from "reducers/productsReducer";
+import productSlice from "reducers/productSlice";
 
 const reducers = combineReducers({
-  products: productsReducer,
+  products: productSlice,
 });
 
 const persistConfig = {

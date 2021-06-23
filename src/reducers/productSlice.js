@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { products } from "services";
 
-export const productsReducer = createSlice({
+export const productSlice = createSlice({
   name: "publication",
   initialState: {
     products: [],
@@ -43,7 +43,7 @@ export const {
   findProduct,
   currentProduct,
   fetchFailed,
-} = productsReducer.actions;
+} = productSlice.actions;
 
 export const fetchAllProducts = () => async dispath => {
   dispath(productsLoading());
@@ -61,4 +61,4 @@ export const getCurrentProduct = product => dispatch => {
   dispatch(currentProduct(product));
 };
 
-export default productsReducer.reducer;
+export default productSlice.reducer;

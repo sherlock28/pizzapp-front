@@ -4,7 +4,7 @@ import { ProductCard } from "./components/ProductCard";
 import { SearchForm } from "./components/SearchForm";
 import { LoadingSkeleton } from "./components/LoadingSkeleton";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllProducts } from "reducers/productsReducer";
+import { fetchAllProducts } from "reducers/productSlice";
 
 export function HomePage() {
   const listProducts = useSelector(state => state.products.products);
@@ -24,7 +24,7 @@ export function HomePage() {
       {loading ?
         <LoadingSkeleton /> :
         listProducts.map(product => {
-          return <ProductCard product={product} key={product._id}/>
+          return <ProductCard product={product} key={product._id} />
         })
       }
     </SimpleGrid>
