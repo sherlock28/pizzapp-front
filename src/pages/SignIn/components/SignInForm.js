@@ -17,7 +17,7 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Link } from "wouter";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { loginAction } from "reducers/authReducer";
+import { loginAction } from "reducers/authSlice";
 import { validateEmail, validatePassword } from "./validations";
 
 export function SignInForm() {

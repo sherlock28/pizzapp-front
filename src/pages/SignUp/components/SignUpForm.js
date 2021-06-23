@@ -14,7 +14,7 @@ import {
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { registerAction } from "reducers/authReducer";
+import { registerAction } from "reducers/authSlice";
 import {
   validateUsername,
   validateFullname,
