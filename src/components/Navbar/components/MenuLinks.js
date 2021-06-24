@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Stack, Button } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
 import { MenuItem } from "./MenuItem";
 import { MenuAvatar } from "./MenuAvatar";
 import { MenuAuthButtons } from "./MenuAuthButtons";
@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { userSelector } from "reducers/userSlice";
 
 export function MenuLinks({ isOpen }) {
-  const { isLoggedIn, isFetching, user } = useSelector(
+  const { isLoggedIn, user } = useSelector(
     userSelector
   );
 
@@ -25,7 +25,7 @@ export function MenuLinks({ isOpen }) {
       >
         <MenuItem to="/">Inicio</MenuItem>
         <MenuItem to="/contacts">Contactos</MenuItem>
-        {isLoggedIn ? <MenuAvatar fullname={"Rodolfo Caceres"} /> : <MenuAuthButtons />}
+        {isLoggedIn ? <MenuAvatar fullname={user.fullname} /> : <MenuAuthButtons />}
       </Stack>
     </Box>
   );

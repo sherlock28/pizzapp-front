@@ -31,7 +31,7 @@ export function SignInForm() {
     formState: { errors },
   } = useForm();
 
-  const { isLoggedIn, isFetching, isSuccess, isError, errorMessage } = useSelector(
+  const { isFetching, isSuccess, isError, errorMessage } = useSelector(
     userSelector
   );
 
@@ -48,7 +48,7 @@ export function SignInForm() {
     return () => {
       dispatch(clearState());
     };
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (isError) {
@@ -65,7 +65,8 @@ export function SignInForm() {
     if (isSuccess) {
       setLocation("/");
     }
-  }, [isError, isSuccess]);
+  }, // eslint-disable-next-line 
+    [isError, isSuccess]);
 
   return (
     <>
