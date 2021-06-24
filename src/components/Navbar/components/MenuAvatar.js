@@ -22,7 +22,7 @@ export function MenuAvatar({ fullname }) {
     return (
         <Menu>
             <MenuButton>
-                <Avatar name={fullname} />
+                <Avatar name={fullname} bg="#E36414" />
             </MenuButton>
             <MenuList>
                 <MenuGroup>
