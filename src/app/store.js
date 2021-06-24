@@ -1,14 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { combineReducers } from "redux";
-import thunk from 'redux-thunk';
-import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { combineReducers } from "redux";
+import { persistReducer } from "redux-persist";
+import thunk from 'redux-thunk';
 import productSlice from "reducers/productSlice";
-import { userSlice } from "reducers/userSlice";
+import userSlice from "reducers/userSlice";
 
 const reducers = combineReducers({
   products: productSlice,
-  user: userSlice.reducer,
+  user: userSlice,
 });
 
 const persistConfig = {
@@ -18,10 +18,10 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
-export const store = configureStore({
+const store = configureStore({
   reducer: persistedReducer,
   devTools: process.env.NODE_ENV !== 'production',
   middleware: [thunk],
 });
 
-export const persistor = persistStore(store);
+export default store;

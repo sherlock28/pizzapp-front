@@ -14,7 +14,7 @@ import {
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { registerAction, userSelector, clearState } from "reducers/userSlice";
+import { registerAction, userSelector } from "reducers/userSlice";
 import { useLocation } from "wouter";
 import {
   validateUsername,
@@ -23,7 +23,7 @@ import {
   validatePhone,
   validatePassword,
 } from "./validations";
-import { useToast } from "@chakra-ui/react"
+import { useToast } from "@chakra-ui/react";
 
 export function SignUpForm() {
   const dispatch = useDispatch();
@@ -51,21 +51,14 @@ export function SignUpForm() {
   };
 
   useEffect(() => {
-    return () => {
-      dispatch(clearState());
-    };
-  }, [dispatch]);
-
-  useEffect(() => {
     if (isSuccess) {
-      dispatch(clearState());
       toast({
         title: "Success.",
         description: "Usuario creado con exito.",
         status: "success",
         duration: 9000,
         isClosable: true,
-      })
+      });
       setLocation("/login");
     }
 
@@ -76,8 +69,7 @@ export function SignUpForm() {
         status: "error",
         duration: 9000,
         isClosable: true,
-      })
-      dispatch(clearState());
+      });
     }
   },// eslint-disable-next-line 
     [isSuccess, isError]);

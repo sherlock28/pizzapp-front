@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Link as LinkChakra,
@@ -14,25 +14,54 @@ import {
   Center,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { loginAction } from "reducers/userSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { loginAction, userSelector } from "reducers/userSlice";
 import { validateEmail, validatePassword } from "./validations";
+import { useToast } from "@chakra-ui/react";
 
 export function SignInForm() {
+  // eslint-disable-next-line
+  const [_, setLocation] = useLocation();
   const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm();
+
+  const { isLoggedIn, isFetching, isSuccess, isError, errorMessage } = useSelector(
+    userSelector
+  );
+
+  console.log({ isLoggedIn, isFetching, isSuccess, isError, errorMessage })
+
+  const toast = useToast();
+
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
   const onSubmit = data => {
     dispatch(loginAction(data));
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast({
+        title: "Error",
+        description: errorMessage,
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+
+    if (isSuccess) {
+      setLocation("/");
+    }
+  },// eslint-disable-next-line 
+    [isError, isSuccess]);
 
   return (
     <>
@@ -89,7 +118,8 @@ export function SignInForm() {
               onClick={handleSubmit(onSubmit)}
               bg="#E36414"
               type="submit"
-              isLoading={isSubmitting}
+              isLoading={isFetching}
+              loadingText="Enviando"
               width="60%"
               mt={4}
             >

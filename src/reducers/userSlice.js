@@ -20,16 +20,13 @@ export const userSlice = createSlice({
     },
     loginSuccess: (state, action) => {
       state.isFetching = false;
-      state.user = action.payload.data.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
       state.isSuccess = true;
-      state.isError = false;
     },
     registerSuccess: (state, action) => {
       state.isFetching = false;
       state.user = action.payload.user;
-      state.isError = null;
       state.isSuccess = true;
     },
     authFailed: (state, action) => {
@@ -37,28 +34,28 @@ export const userSlice = createSlice({
       state.isError = true;
       state.errorMessage = action.payload.message;
     },
-    clearState: (state, action) => {
-      state.isLoggedIn = false;
-      state.user = null;
-      state.token = null;
-      state.isFetching = false;
-      state.isSuccess = false;
-      state.isError = false;
-      state.errorMessage = '';
-    }
   },
 });
 
-export const { authLoading, loginSuccess, registerSuccess, authFailed, clearState } =
+export const { authLoading, loginSuccess, registerSuccess, authFailed, setLogged } =
   userSlice.actions;
 
 export const loginAction = data => async dispatch => {
   dispatch(authLoading());
   try {
-    const { email, password } = data;
-    const response = await auth.signInService({ email, password });
-    dispatch(loginSuccess(response));
+    const response = await auth.signInService({ ...data });
+    const statusCode = response.status;
+    const res = await response.json();
+
+    console.log(res, statusCode)
+    if (statusCode === 202) {
+      dispatch(loginSuccess(res));
+    }
+    if (statusCode === 403) {
+      dispatch(authFailed(res));
+    }
   } catch (err) {
+    console.log("entra aqui?")
     dispatch(authFailed(err.message));
   }
 };
@@ -77,9 +74,10 @@ export const registerAction = data => async dispatch => {
       dispatch(authFailed(res));
     }
   } catch (err) {
-    console.log("entra al catch")
     dispatch(authFailed(err.message));
   }
 };
 
 export const userSelector = (state) => state.user;
+
+export default userSlice.reducer;
