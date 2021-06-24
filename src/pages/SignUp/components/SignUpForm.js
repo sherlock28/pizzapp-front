@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Flex,
@@ -13,8 +13,9 @@ import {
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { registerAction } from "reducers/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { registerAction, userSelector, clearState } from "reducers/userSlice";
+import { useLocation } from "wouter";
 import {
   validateUsername,
   validateFullname,
@@ -22,14 +23,24 @@ import {
   validatePhone,
   validatePassword,
 } from "./validations";
+import { useToast } from "@chakra-ui/react"
 
 export function SignUpForm() {
   const dispatch = useDispatch();
+  // eslint-disable-next-line
+  const [_, setLocation] = useLocation();
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm();
+
+  const { isFetching, isSuccess, isError, errorMessage } = useSelector(
+    userSelector
+  );
+
+  const toast = useToast();
+
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
@@ -38,6 +49,38 @@ export function SignUpForm() {
       dispatch(registerAction(data));
     }
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearState());
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(clearState());
+      toast({
+        title: "Success.",
+        description: "Usuario creado con exito.",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      })
+      setLocation("/login");
+    }
+
+    if (isError) {
+      toast({
+        title: "Error",
+        description: errorMessage,
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      })
+      dispatch(clearState());
+    }
+  },// eslint-disable-next-line 
+    [isSuccess, isError]);
 
   return (
     <>
@@ -143,7 +186,8 @@ export function SignUpForm() {
               onClick={handleSubmit(onSubmit)}
               bg="#E36414"
               type="submit"
-              isLoading={isSubmitting}
+              isLoading={isFetching}
+              loadingText="Registrando"
               width="60%"
               mt={4}
             >

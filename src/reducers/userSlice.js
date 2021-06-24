@@ -28,16 +28,28 @@ export const userSlice = createSlice({
     },
     registerSuccess: (state, action) => {
       state.isFetching = false;
+      state.user = action.payload.user;
       state.isError = null;
+      state.isSuccess = true;
     },
     authFailed: (state, action) => {
       state.isFetching = false;
-      state.isError = action.payload.message;
+      state.isError = true;
+      state.errorMessage = action.payload.message;
     },
+    clearState: (state, action) => {
+      state.isLoggedIn = false;
+      state.user = null;
+      state.token = null;
+      state.isFetching = false;
+      state.isSuccess = false;
+      state.isError = false;
+      state.errorMessage = '';
+    }
   },
 });
 
-export const { authLoading, loginSuccess, registerSuccess, authFailed } =
+export const { authLoading, loginSuccess, registerSuccess, authFailed, clearState } =
   userSlice.actions;
 
 export const loginAction = data => async dispatch => {
@@ -55,8 +67,17 @@ export const registerAction = data => async dispatch => {
   dispatch(authLoading());
   try {
     const response = await auth.signUpService({ body: data });
-    dispatch(registerSuccess(response));
+    const statusCode = response.status;
+    const res = await response.json();
+
+    if (statusCode === 201) {
+      dispatch(registerSuccess(res));
+    }
+    if (statusCode === 400) {
+      dispatch(authFailed(res));
+    }
   } catch (err) {
+    console.log("entra al catch")
     dispatch(authFailed(err.message));
   }
 };
