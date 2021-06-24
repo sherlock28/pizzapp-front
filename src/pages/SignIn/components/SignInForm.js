@@ -17,7 +17,7 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Link, useLocation } from "wouter";
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
-import { loginAction, userSelector } from "reducers/userSlice";
+import { loginAction, userSelector, clearState } from "reducers/userSlice";
 import { validateEmail, validatePassword } from "./validations";
 import { useToast } from "@chakra-ui/react";
 
@@ -35,8 +35,6 @@ export function SignInForm() {
     userSelector
   );
 
-  console.log({ isLoggedIn, isFetching, isSuccess, isError, errorMessage })
-
   const toast = useToast();
 
   const [show, setShow] = useState(false);
@@ -47,6 +45,12 @@ export function SignInForm() {
   };
 
   useEffect(() => {
+    return () => {
+      dispatch(clearState());
+    };
+  }, []);
+
+  useEffect(() => {
     if (isError) {
       toast({
         title: "Error",
@@ -55,13 +59,13 @@ export function SignInForm() {
         duration: 9000,
         isClosable: true,
       });
+      dispatch(clearState());
     }
 
     if (isSuccess) {
       setLocation("/");
     }
-  },// eslint-disable-next-line 
-    [isError, isSuccess]);
+  }, [isError, isSuccess]);
 
   return (
     <>

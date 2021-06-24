@@ -26,6 +26,7 @@ export function MenuLinks({ isOpen }) {
           size="md"
           variant="link"
           onClick={() => setLocation("/login")}
+          fontSize={{ base: "16px", sm: "16px", md: "16px", lg: "16px" }}
           minW={"140px"}
           _focus={{
             border: "none",
@@ -36,6 +37,7 @@ export function MenuLinks({ isOpen }) {
         <Button
           bg="#E36414"
           size="md"
+          fontSize={{ base: "16px", sm: "16px", md: "16px", lg: "16px" }}
           onClick={() => setLocation("/register")}
           minW={"140px"}
         >

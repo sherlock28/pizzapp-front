@@ -34,10 +34,15 @@ export const userSlice = createSlice({
       state.isError = true;
       state.errorMessage = action.payload.message;
     },
+    clearState: (state, action) => {
+      state.isSuccess = false;
+      state.isError = false;
+      state.errorMessage = ""
+    }
   },
 });
 
-export const { authLoading, loginSuccess, registerSuccess, authFailed, setLogged } =
+export const { authLoading, loginSuccess, registerSuccess, authFailed, clearState } =
   userSlice.actions;
 
 export const loginAction = data => async dispatch => {
