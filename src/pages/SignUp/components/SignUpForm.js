@@ -34,7 +34,7 @@ export function SignUpForm() {
   const handleClick = () => setShow(!show);
 
   const onSubmit = data => {
-    if (data.password === data.confirmPassword) {
+    if (data.password === data.confirmpass) {
       dispatch(registerAction(data));
     }
   };
@@ -124,16 +124,16 @@ export function SignUpForm() {
               </FormErrorMessage>
             </FormControl>
 
-            <FormControl m={2} isInvalid={errors.confirmPassword}>
+            <FormControl m={2} isInvalid={errors.confirmpass}>
               <FormLabel>Confirma tu contraseña</FormLabel>
               <Input
-                id="confirmPassword"
+                id="confirmpass"
                 type={show ? "text" : "password"}
                 placeholder="Confirmación de contraseña"
-                {...register("confirmPassword", validatePassword)}
+                {...register("confirmpass", validatePassword)}
               />
               <FormErrorMessage>
-                {errors.confirmPassword && errors.confirmPassword.message}
+                {errors.confirmpass && errors.confirmpass.message}
               </FormErrorMessage>
             </FormControl>
           </Flex>

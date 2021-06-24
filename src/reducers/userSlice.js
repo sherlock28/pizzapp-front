@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { auth } from "services";
 
 export const userSlice = createSlice({
@@ -19,19 +19,20 @@ export const userSlice = createSlice({
       }
     },
     loginSuccess: (state, action) => {
-      state.loading = false;
+      state.isFetching = false;
       state.user = action.payload.data.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-      state.error = null;
+      state.isSuccess = true;
+      state.isError = false;
     },
     registerSuccess: (state, action) => {
-      state.loading = false;
-      state.error = null;
+      state.isFetching = false;
+      state.isError = null;
     },
     authFailed: (state, action) => {
-      state.loading = false;
-      state.error = action.payload.message;
+      state.isFetching = false;
+      state.isError = action.payload.message;
     },
   },
 });
