@@ -21,12 +21,12 @@ export const userSlice = createSlice({
     loginSuccess: (state, action) => {
       state.isFetching = false;
       state.token = action.payload.token;
+      state.user = action.payload.user;
       state.isLoggedIn = true;
       state.isSuccess = true;
     },
     registerSuccess: (state, action) => {
       state.isFetching = false;
-      state.user = action.payload.user;
       state.isSuccess = true;
     },
     authFailed: (state, action) => {

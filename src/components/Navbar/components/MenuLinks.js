@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, Stack, Button } from "@chakra-ui/react";
+import { Box, Stack, Button, Avatar } from "@chakra-ui/react";
 import { MenuItem } from "./MenuItem";
 import { useLocation } from "wouter";
+import { useSelector } from "react-redux";
 
 export function MenuLinks({ isOpen }) {
   // eslint-disable-next-line
@@ -21,28 +22,30 @@ export function MenuLinks({ isOpen }) {
       >
         <MenuItem to="/">Inicio</MenuItem>
         <MenuItem to="/contacts">Contactos</MenuItem>
-        <Button
-          color="white"
-          size="md"
-          variant="link"
-          onClick={() => setLocation("/login")}
-          fontSize={{ base: "16px", sm: "16px", md: "16px", lg: "16px" }}
-          minW={"140px"}
-          _focus={{
-            border: "none",
-          }}
-        >
-          Iniciar sesión
-        </Button>
-        <Button
-          bg="#E36414"
-          size="md"
-          fontSize={{ base: "16px", sm: "16px", md: "16px", lg: "16px" }}
-          onClick={() => setLocation("/register")}
-          minW={"140px"}
-        >
-          Registrate
-        </Button>
+        <>
+          <Button
+            color="white"
+            size="md"
+            variant="link"
+            onClick={() => setLocation("/login")}
+            fontSize={{ base: "16px", sm: "16px", md: "16px", lg: "16px" }}
+            minW={"140px"}
+            _focus={{
+              border: "none",
+            }}
+          >
+            Iniciar sesión
+          </Button>
+          <Button
+            bg="#E36414"
+            size="md"
+            fontSize={{ base: "16px", sm: "16px", md: "16px", lg: "16px" }}
+            onClick={() => setLocation("/register")}
+            minW={"140px"}
+          >
+            Registrate
+          </Button>
+        </>
       </Stack>
     </Box>
   );
