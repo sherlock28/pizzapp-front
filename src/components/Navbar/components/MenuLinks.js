@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { userSelector } from "reducers/userSlice";
 
 export function MenuLinks({ isOpen }) {
-  const { isLoggedIn, user } = useSelector(
+  const { isLoggedIn, isFetching, user } = useSelector(
     userSelector
   );
 
@@ -25,7 +25,7 @@ export function MenuLinks({ isOpen }) {
       >
         <MenuItem to="/">Inicio</MenuItem>
         <MenuItem to="/contacts">Contactos</MenuItem>
-        {isLoggedIn ? <MenuAvatar fullname={user.fullname} /> : <MenuAuthButtons />}
+        {isLoggedIn ? <MenuAvatar fullname={"Rodolfo Caceres"} /> : <MenuAuthButtons />}
       </Stack>
     </Box>
   );

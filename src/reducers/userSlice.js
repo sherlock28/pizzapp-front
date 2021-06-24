@@ -25,6 +25,15 @@ export const userSlice = createSlice({
       state.isLoggedIn = true;
       state.isSuccess = true;
     },
+    logoutSuccess: (state, action) => {
+      state.isLoggedIn = false;
+      state.user = null;
+      state.token = null;
+      state.isFetching = false;
+      state.isSuccess = false;
+      state.isError = false;
+      state.errorMessage = '';
+    },
     registerSuccess: (state, action) => {
       state.isFetching = false;
       state.isSuccess = true;
@@ -42,7 +51,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { authLoading, loginSuccess, registerSuccess, authFailed, clearState } =
+export const { authLoading, loginSuccess, logoutSuccess, registerSuccess, authFailed, clearState } =
   userSlice.actions;
 
 export const loginAction = data => async dispatch => {
@@ -52,7 +61,6 @@ export const loginAction = data => async dispatch => {
     const statusCode = response.status;
     const res = await response.json();
 
-    console.log(res, statusCode)
     if (statusCode === 202) {
       dispatch(loginSuccess(res));
     }
@@ -60,10 +68,27 @@ export const loginAction = data => async dispatch => {
       dispatch(authFailed(res));
     }
   } catch (err) {
-    console.log("entra aqui?")
     dispatch(authFailed(err.message));
   }
 };
+
+export const logoutAction = data => async dispatch => {
+  dispatch(authLoading());
+  try {
+    const response = await auth.signOutService({ ...data });
+    const statusCode = response.status;
+    const res = await response.json();
+
+    if (statusCode === 200) {
+      dispatch(logoutSuccess(res));
+    }
+    if (statusCode === 403) {
+      dispatch(authFailed(res));
+    }
+  } catch (err) {
+    dispatch(authFailed(err.message));
+  }
+}
 
 export const registerAction = data => async dispatch => {
   dispatch(authLoading());

@@ -8,8 +8,17 @@ import {
     MenuDivider,
     Avatar
 } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutAction, userSelector } from "reducers/userSlice";
 
 export function MenuAvatar({ fullname }) {
+    const dispatch = useDispatch();
+    const { token } = useSelector(userSelector);
+
+    const handleSubmit = () => {
+        dispatch(logoutAction({ jwt: token }));
+    }
+
     return (
         <Menu>
             <MenuButton>
@@ -22,7 +31,7 @@ export function MenuAvatar({ fullname }) {
                 </MenuGroup>
                 <MenuDivider />
                 <MenuGroup>
-                    <MenuItem>Cerrar sesión</MenuItem>
+                    <MenuItem onClick={handleSubmit}>Cerrar sesión</MenuItem>
                 </MenuGroup>
             </MenuList>
         </Menu>
