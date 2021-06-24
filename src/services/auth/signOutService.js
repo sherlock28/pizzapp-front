@@ -7,6 +7,5 @@ export function signOutService({ jwt }) {
     body: JSON.stringify({ jwt }),
   })
     .then(response => response)
-    .then(res => res.json())
     .catch(err => err);
 }

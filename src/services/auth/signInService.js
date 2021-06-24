@@ -7,6 +7,5 @@ export function signInService({ email, password }) {
     body: JSON.stringify({ email, password }),
   })
     .then(response => response)
-    .then(res => res.json())
     .catch(err => err);
 }
