@@ -6,6 +6,7 @@ export const productSlice = createSlice({
   initialState: {
     products: [],
     product: null,
+    productNames: [],
     loading: false,
     error: null,
   },
@@ -14,6 +15,10 @@ export const productSlice = createSlice({
       if (state.loading === true) {
         state.loading = false;
         state.products = action.payload;
+        let names = [];
+        state.productNames = action.payload.map(product => {
+          return [...names, product.name].toString();
+        });
       }
     },
     productsLoading: (state, action) => {

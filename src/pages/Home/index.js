@@ -8,7 +8,7 @@ import { fetchAllProducts } from "reducers/productSlice";
 
 export function HomePage() {
   const listProducts = useSelector(state => state.products.products);
-  const loading = useSelector(state => state.products.loading);
+  const { loading, productNames } = useSelector(state => state.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
