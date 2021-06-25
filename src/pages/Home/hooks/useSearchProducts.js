@@ -10,9 +10,12 @@ export function useSearchProducts() {
 
     const { products } = useSelector(productSelector);
 
-    const filter = e => {
+    const handleChange = e => {
         setQuery(e.target.value);
+        filter();
+    }
 
+    const filter = () => {
         let result = [];
         products.forEach(product => {
             let name = product.name.toLowerCase();
@@ -30,7 +33,12 @@ export function useSearchProducts() {
         dispatch(setFilteredProducts(result));
     }
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        dispatch(setFilteredProducts([]));
+    }
+
     return {
-        filter, message
+        handleChange, handleSubmit, message
     }
 }

@@ -4,21 +4,22 @@ import { useSearchProducts } from "../hooks/useSearchProducts";
 
 export function SearchForm() {
 
-    const { filter, message } = useSearchProducts();
+    const { handleSubmit, handleChange, message } = useSearchProducts();
 
     return (
-        <Box d="flex" flexDir="column" justifyContent="center">
-            <Input
-                name="queryField"
-                onChange={filter}
-                variant="flushed"
-                placeholder="Busca tu pizza preferida..."
-                size="lg"
-                w={["100%", "340px", "440px", "500px"]}
-                my={8}
-            />
-            <Text>{message}</Text>
-        </Box>
-
+        <form onSubmit={handleSubmit}>
+            <Box d="flex" flexDir="column" justifyContent="center">
+                <Input
+                    name="queryField"
+                    onChange={handleChange}
+                    variant="flushed"
+                    placeholder="Busca tu pizza preferida..."
+                    size="lg"
+                    w={["100%", "340px", "440px", "500px"]}
+                    my={8}
+                />
+                <Text mb={8}>{message}</Text>
+            </Box>
+        </form>
     )
 }
