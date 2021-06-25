@@ -6,7 +6,10 @@ import {
     MenuItem,
     MenuGroup,
     MenuDivider,
-    Avatar
+    Avatar,
+    Switch,
+    Text,
+    useColorMode
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAction, userSelector } from "reducers/userSlice";
@@ -14,6 +17,9 @@ import { logoutAction, userSelector } from "reducers/userSlice";
 export function MenuAvatar({ fullname }) {
     const dispatch = useDispatch();
     const { token } = useSelector(userSelector);
+    // eslint-disable-next-line
+    const { colorMode, toggleColorMode } = useColorMode();
+
 
     const handleSubmit = () => {
         dispatch(logoutAction({ jwt: token }));
@@ -28,6 +34,13 @@ export function MenuAvatar({ fullname }) {
                 <MenuGroup>
                     <MenuItem>Mi cuenta</MenuItem>
                     <MenuItem>Carrito</MenuItem>
+                    <MenuItem>
+                        <Text mr={2}>Modo:</Text>
+                        <Switch
+                            onChange={toggleColorMode}
+                            size="md"
+                        />
+                    </MenuItem>
                 </MenuGroup>
                 <MenuDivider />
                 <MenuGroup>
