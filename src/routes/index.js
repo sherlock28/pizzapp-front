@@ -8,17 +8,19 @@ import { DetailPage } from "pages/Detail";
 import { MyAccountPage } from "pages/MyAccount";
 import { CartPage } from "pages/Cart";
 
+import { paths } from "config/paths";
+
 export function Routes() {
   return (
     <>
       <Switch>
-        <Route path="/" component={HomePage} exact />
-        <Route path="/login" component={SignInPage} exact />
-        <Route path="/register" component={SignUpPage} exact />
-        <Route path="/contacts" component={ContactsPage} exact />
-        <Route path="/detail/:id" component={DetailPage} exact />
-        <Route path="/account" component={MyAccountPage} exact />
-        <Route path="/cart" component={CartPage} exact />
+        <Route path={paths.home} component={HomePage} exact />
+        <Route path={paths.login} component={SignInPage} exact />
+        <Route path={paths.register} component={SignUpPage} exact />
+        <Route path={paths.account} component={MyAccountPage} exact />
+        <Route path={paths.cart} component={CartPage} exact />
+        <Route path={paths.contacts} component={ContactsPage} exact />
+        <Route path={paths.detail} component={DetailPage} exact />
         <Route>404, Not Found!</Route>
       </Switch>
     </>

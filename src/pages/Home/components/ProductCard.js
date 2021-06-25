@@ -1,9 +1,18 @@
 import React from "react";
 import { Box, Image, Text, Flex, Button } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
+import { useSelector } from "react-redux";
+import { userSelector } from "reducers/userSlice";
 
 export function ProductCard({ product }) {
+    // eslint-disable-next-line
+    const [_, setLocation] = useLocation();
+    const { isLoggedIn } = useSelector(userSelector);
+
+    const handleClick = () => {
+        if (!isLoggedIn) setLocation("/login");
+    }
 
     return (
         <Box
@@ -57,6 +66,7 @@ export function ProductCard({ product }) {
 
             <Flex justify="center">
                 <Button
+                    onClick={handleClick}
                     m={4}
                     w="80%"
                     bg="#fa8231"
