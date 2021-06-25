@@ -1,26 +1,13 @@
-import React, { useEffect } from "react";
-import { Heading, Box, SimpleGrid, list } from "@chakra-ui/react";
+import React from "react";
+import { Heading, SimpleGrid } from "@chakra-ui/react";
 import { ProductCard } from "./components/ProductCard";
 import { SearchForm } from "./components/SearchForm";
 import { LoadingSkeleton } from "./components/LoadingSkeleton";
-import { useSelector, useDispatch } from "react-redux";
-import { productSelector, fetchAllProducts } from "reducers/productSlice";
+import { useGetProducts } from "./hooks/useGetProducts";
 
 export function HomePage() {
-  const { loading, filteredProducts, products: allProducts } = useSelector(productSelector);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchAllProducts());
-  }, [dispatch]);
-
-  const isWithoutResults = filteredProducts.length === 0;
-  let listProducts;
-  if (isWithoutResults) {
-    listProducts = allProducts;
-  } else {
-    listProducts = filteredProducts;
-  }
+  const { listProducts, loading } = useGetProducts();
 
   return <>
     <Heading fontWeight="bold" as="h1" size="2xl">Pizzapp</Heading>
