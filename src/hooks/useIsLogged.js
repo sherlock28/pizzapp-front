@@ -8,9 +8,20 @@ export function useIsLogged() {
     const [location, setLocation] = useLocation();
     const { isLoggedIn } = useSelector(userSelector);
 
-    if (isLoggedIn && location === paths.login) setLocation("/");
-    if (isLoggedIn && location === paths.register) setLocation("/");
+    const PATHS_REDIRECT = {
+        "/login": "/",
+        "/register": "/",
+        "/account": "/login",
+        "/cart": "/login"
+    }
 
-    if (!isLoggedIn && location === paths.account) setLocation("/login");
-    if (!isLoggedIn && location === paths.cart) setLocation("/login");
+    const redirectTo = PATHS_REDIRECT[location];
+
+    /* Begind logged in */
+    if (isLoggedIn && location === paths.login) setLocation(redirectTo);
+    if (isLoggedIn && location === paths.register) setLocation(redirectTo);
+
+    /* Not begind logged in */
+    if (!isLoggedIn && location === paths.account) setLocation(redirectTo);
+    if (!isLoggedIn && location === paths.cart) setLocation(redirectTo);
 }
