@@ -24,6 +24,7 @@ import {
   validatePassword,
 } from "./validations";
 import { useToast } from "@chakra-ui/react";
+import { colors } from "config/colorPalette";
 
 export function SignUpForm() {
   const dispatch = useDispatch();
@@ -184,7 +185,7 @@ export function SignUpForm() {
           <Center>
             <Button
               onClick={handleSubmit(onSubmit)}
-              bg="#E36414"
+              bg={colors.orange1}
               type="submit"
               isLoading={isFetching}
               loadingText="Registrando"

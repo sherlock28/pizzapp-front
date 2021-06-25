@@ -4,7 +4,7 @@ import { StarIcon } from "@chakra-ui/icons";
 import { LoadingSkeleton } from "./components/LoadingSkeleton";
 import { useRoute } from "wouter";
 import { products } from "services";
-
+import { colors } from "config/colorPalette";
 
 export function DetailPage() {
   // eslint-disable-next-line 
@@ -61,7 +61,7 @@ export function DetailPage() {
           <Text fontSize={36}>
             ${product.price}
           </Text>
-          {product.off && <Text as="span" mt={2} ml={1} fontSize={20} color="#00a650">
+          {product.off && <Text as="span" mt={2} ml={1} fontSize={20} color={colors.off}>
             {`   ${product.off} OFF`}
           </Text>}
         </Box>
@@ -72,7 +72,7 @@ export function DetailPage() {
             .map((_, i) => (
               <StarIcon
                 key={i}
-                color={i < product.rating ? "#fa983a" : "gray.300"}
+                color={i < product.rating ? colors.starIconFull : colors.starIconEmpty}
               />
             ))}
           <Box as="span" ml="2" color="gray.600" fontSize="sm">
@@ -87,11 +87,11 @@ export function DetailPage() {
               <Button
                 m={4}
                 w={["240px", "100%", "80%", "80%", "80%"]}
-                border="1px solid #fa8231"
+                border={`1px solid ${colors.btnCard}`}
                 size="md"
-                color="#fa8231"
+                color={colors.btnCard}
                 _hover={{
-                  background: "#ffaf40",
+                  background: colors.hoverBtnCard,
                   color: "black"
                 }}>
                 Comprar ahora
@@ -103,11 +103,11 @@ export function DetailPage() {
               <Button
                 m={4}
                 w={["240px", "100%", "80%", "80%", "80%"]}
-                bg="#fa8231"
+                bg={colors.btnCard}
                 size="md"
                 color="white"
                 _hover={{
-                  background: "#ffaf40",
+                  background: colors.hoverBtnCard,
                   color: "black"
                 }}>
                 Agregar al carrito

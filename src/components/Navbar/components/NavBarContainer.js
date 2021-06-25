@@ -1,5 +1,6 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
+import { colors } from "config/colorPalette";
 
 export const NavBarContainer = ({ children, ...props }) => {
   return (
@@ -11,7 +12,7 @@ export const NavBarContainer = ({ children, ...props }) => {
       w="100%"
       mb={8}
       p={8}
-      bg="#FB8B24"
+      bg={colors.orangeBg}
       {...props}
     >
       {children}

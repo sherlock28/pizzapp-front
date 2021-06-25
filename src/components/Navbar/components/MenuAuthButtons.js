@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
 import { useLocation } from "wouter";
+import { colors } from "config/colorPalette";
 
 export function MenuAuthButtons() {
 
@@ -23,7 +24,7 @@ export function MenuAuthButtons() {
                 Iniciar sesión
             </Button>
             <Button
-                bg="#E36414"
+                bg={colors.orange1}
                 size="md"
                 fontSize={{ base: "16px", sm: "16px", md: "16px", lg: "16px" }}
                 onClick={() => setLocation("/register")}

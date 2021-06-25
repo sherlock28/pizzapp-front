@@ -5,6 +5,8 @@ import { Link, useLocation } from "wouter";
 import { useSelector } from "react-redux";
 import { userSelector } from "reducers/userSlice";
 
+import { colors } from "config/colorPalette";
+
 export function ProductCard({ product }) {
     // eslint-disable-next-line
     const [_, setLocation] = useLocation();
@@ -42,7 +44,7 @@ export function ProductCard({ product }) {
                     <Box>
                         <Text fontSize="2xl">
                             ${product.price}
-                            {product.off && <Box as="span" color="#00a650" fontSize="sm">
+                            {product.off && <Box as="span" color={colors.off} fontSize="sm">
                                 {`   ${product.off} OFF`}
                             </Box>}
                         </Text>
@@ -54,7 +56,7 @@ export function ProductCard({ product }) {
                             .map((_, i) => (
                                 <StarIcon
                                     key={i}
-                                    color={i < product.rating ? "#fa983a" : "gray.300"}
+                                    color={i < product.rating ? colors.starIconFull : colors.starIconEmpty}
                                 />
                             ))}
                         <Box as="span" ml="2" color="gray.600" fontSize="sm">
@@ -69,11 +71,11 @@ export function ProductCard({ product }) {
                     onClick={handleClick}
                     m={4}
                     w="80%"
-                    bg="#fa8231"
+                    bg={colors.btnCard}
                     size="sm"
                     color="white"
                     _hover={{
-                        background: "#ffaf40",
+                        background: colors.hoverBtnCard,
                         color: "black"
                     }}>
                     Agregar al carrito

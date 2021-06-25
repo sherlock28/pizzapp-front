@@ -20,6 +20,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { loginAction, userSelector, clearState } from "reducers/userSlice";
 import { validateEmail, validatePassword } from "./validations";
 import { useToast } from "@chakra-ui/react";
+import { colors } from "config/colorPalette";
 
 export function SignInForm() {
   // eslint-disable-next-line
@@ -111,7 +112,7 @@ export function SignInForm() {
             </Box>
             <Box>
               <Link to="/forgetterpass">
-                <LinkChakra color="#FB8B24">
+                <LinkChakra color={colors.orangeBg}>
                   ¿Olvidaste tu contraseña?
                 </LinkChakra>
               </Link>
@@ -121,7 +122,7 @@ export function SignInForm() {
           <Center>
             <Button
               onClick={handleSubmit(onSubmit)}
-              bg="#E36414"
+              bg={colors.orange1}
               type="submit"
               isLoading={isFetching}
               loadingText="Enviando"

@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAction, userSelector } from "reducers/userSlice";
+import { colors } from "config/colorPalette";
 
 export function MenuAvatar({ fullname }) {
     const dispatch = useDispatch();
@@ -28,7 +29,7 @@ export function MenuAvatar({ fullname }) {
     return (
         <Menu>
             <MenuButton>
-                <Avatar name={fullname} bg="#E36414" />
+                <Avatar name={fullname} bg={colors.orange1} />
             </MenuButton>
             <MenuList>
                 <MenuGroup>

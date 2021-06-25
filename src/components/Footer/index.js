@@ -2,12 +2,13 @@ import React from "react";
 import { SimpleGrid, Box, Flex, Text } from "@chakra-ui/react";
 import { ColumnSections } from "./components/ColumnSections";
 import { ColumnContacts } from "./components/ColumnContacts";
+import { colors } from "config/colorPalette";
 
 export function Footer() {
     return (
         <Box
             w="100%"
-            bg="#FB8B24"
+            bg={colors.orangeBg}
             mt={16}
             p={8}>
 
@@ -15,12 +16,12 @@ export function Footer() {
                 <ColumnSections
                     color="white"
                     _hover={{
-                        color: "#cd6133"
+                        color: colors.orange2
                     }} />
                 <ColumnContacts
                     color="white"
                     _hover={{
-                        color: "#cd6133"
+                        color: colors.orange2
                     }} />
             </SimpleGrid>
             <Flex pt={4} direction="column" alignItems="center">
