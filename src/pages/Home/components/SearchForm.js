@@ -1,26 +1,50 @@
 import React, { useState } from "react";
-import { Input } from "@chakra-ui/react";
+import { Input, Box, Text } from "@chakra-ui/react";
+import { useSelector, useDispatch } from "react-redux";
+import { productSelector, setFilteredProducts } from "reducers/productSlice";
 
 export function SearchForm() {
 
+    const dispatch = useDispatch();
     const [query, setQuery] = useState("");
+    const [message, setMessage] = useState("");
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        console.log(query)
+    const { products } = useSelector(productSelector);
+
+    const handleChange = e => {
+        setQuery(e.target.value);
+
+        let result = [];
+        products.forEach(product => {
+            let name = product.name.toLowerCase();
+            if (name.indexOf(query.toLowerCase()) !== -1) {
+                result.push(product);
+            };
+        });
+
+        if (result.length === 0) {
+            setMessage("Producto no encontrado");
+        } else {
+            setMessage("");
+        }
+
+        dispatch(setFilteredProducts(result));
     }
 
+
     return (
-        <form onSubmit={handleSubmit}>
+        <Box d="flex" flexDir="columns" justifyContent="center" w="100%">
             <Input
                 name="queryField"
-                onChange={e => setQuery(e.target.value)}
+                onChange={handleChange}
                 variant="flushed"
-                placeholder="Busca tu pizza..."
+                placeholder="Busca tu pizza preferida..."
                 size="lg"
                 w={500}
                 my={8}
             />
-        </form>
+            <Text>{message}</Text>
+        </Box>
+
     )
 }

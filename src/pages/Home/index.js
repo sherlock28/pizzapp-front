@@ -4,11 +4,10 @@ import { ProductCard } from "./components/ProductCard";
 import { SearchForm } from "./components/SearchForm";
 import { LoadingSkeleton } from "./components/LoadingSkeleton";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllProducts } from "reducers/productSlice";
+import { productSelector, fetchAllProducts } from "reducers/productSlice";
 
 export function HomePage() {
-  const listProducts = useSelector(state => state.products.products);
-  const { loading, productNames } = useSelector(state => state.products);
+  const { loading, filteredProducts: listProducts } = useSelector(productSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {

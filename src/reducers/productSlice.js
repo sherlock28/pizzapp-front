@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { products } from "services";
 
 export const productSlice = createSlice({
-  name: "publication",
+  name: "products",
   initialState: {
     products: [],
     product: null,
-    productNames: [],
+    filteredProducts: [],
     loading: false,
     error: null,
   },
@@ -15,10 +15,7 @@ export const productSlice = createSlice({
       if (state.loading === true) {
         state.loading = false;
         state.products = action.payload;
-        let names = [];
-        state.productNames = action.payload.map(product => {
-          return [...names, product.name].toString();
-        });
+        state.filteredProducts = action.payload;
       }
     },
     productsLoading: (state, action) => {
@@ -26,9 +23,8 @@ export const productSlice = createSlice({
         state.loading = true;
       }
     },
-    findProduct: (state, action) => {
-      const product = state.products.filter(p => p._id === action.payload);
-      state.product = product[0];
+    setFilteredProducts: (state, action) => {
+      state.filteredProducts = action.payload;
     },
     currentProduct: (state, action) => {
       state.product = action.payload;
@@ -45,7 +41,7 @@ export const productSlice = createSlice({
 export const {
   productsReceived,
   productsLoading,
-  findProduct,
+  setFilteredProducts,
   currentProduct,
   fetchFailed,
 } = productSlice.actions;
@@ -67,3 +63,5 @@ export const getCurrentProduct = product => dispatch => {
 };
 
 export default productSlice.reducer;
+
+export const productSelector = state => state.products;
