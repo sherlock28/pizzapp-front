@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Image, Text, Flex, Button } from "@chakra-ui/react";
+import { Box, Image, Text, Flex, Button, Badge } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import { Link, useLocation } from "wouter";
 import { useSelector } from "react-redux";
@@ -40,13 +40,13 @@ export function ProductCard({ product }) {
                     >
                         {product.name}
                     </Box>
-
+                    
                     <Box>
                         <Text fontSize="2xl">
                             ${product.price}
-                            {product.off && <Box as="span" color={colors.off} fontSize="sm">
+                            {product.off && <Badge ml="1" colorScheme="green" color={colors.off}>
                                 {`   ${product.off} OFF`}
-                            </Box>}
+                            </Badge>}
                         </Text>
                     </Box>
 
