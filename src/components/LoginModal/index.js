@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
     Button,
     Modal,
@@ -16,63 +16,16 @@ import {
     FormErrorMessage,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { useForm } from "react-hook-form";
 import { validateEmail, validatePassword } from "config/validations";
-import { useLocation } from "wouter";
-import { useToast } from "@chakra-ui/react";
-import { useSelector, useDispatch } from "react-redux";
-import { loginAction, userSelector, clearState } from "reducers/userSlice";
+import { useModalLogin } from "./useModalLogin";
 
 import { colors } from "config/colorPalette";
 
-let showToast = true;
-
 export function LoginModal({ isOpen, onClose }) {
 
-    const [show, setShow] = useState(false);
-    const handleClick = () => setShow(!show);
-
-    const dispatch = useDispatch();
-    const toast = useToast();
     const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
-
-    const { isFetching, isSuccess, isError, errorMessage } = useSelector(userSelector);
-
-    const onSubmit = data => {
-        dispatch(loginAction(data));
-        showToast = true;
-    };
-
-    useEffect(() => {
-        return () => {
-            dispatch(clearState());
-        };
-    }, [dispatch]);
-
-    useEffect(() => {
-        if (isError) {
-            if (showToast) {
-                toast({
-                    title: "Error",
-                    description: errorMessage,
-                    status: "error",
-                    duration: 3000,
-                    isClosable: true,
-                });
-                showToast = !showToast;
-                dispatch(clearState());
-            }
-        }
-
-        if (isSuccess) {
-            onClose();
-        }
-    }, // eslint-disable-next-line 
-        [isError, isSuccess]);
+        handleSubmit, onSubmit, isFetching, register, errors, showPass, handleClick
+    } = useModalLogin({ isOpen, onClose })
 
     return (
         <>
@@ -106,13 +59,13 @@ export function LoginModal({ isOpen, onClose }) {
                                 <InputGroup>
                                     <Input
                                         id="password"
-                                        type={show ? "text" : "password"}
+                                        type={showPass ? "text" : "password"}
                                         placeholder="Contraseña"
                                         {...register("password", validatePassword)}
                                     />
                                     <InputRightElement width="4.5rem">
                                         <Button h="1.75rem" size="sm" onClick={handleClick}>
-                                            {show ? <ViewOffIcon /> : <ViewIcon />}
+                                            {showPass ? <ViewOffIcon /> : <ViewIcon />}
                                         </Button>
                                     </InputRightElement>
                                 </InputGroup>
