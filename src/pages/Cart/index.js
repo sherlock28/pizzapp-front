@@ -16,12 +16,12 @@ export function CartPage() {
                 {pizzasTest.map(product => <ItemCart product={product} />)}
             </Flex>
 
-            <Flex flexDir="row-reverse">
+            <Flex flexDir="row-reverse" mt={4}>
                 <Text fontSize={18} fontWeight="light" color={colors.off} mr={8} ml={28}>Gratis</Text>
                 <Text fontSize={18} fontWeight="normal" color={colors.orange1}>Enviar a: San Loremzo 100, San Miguel de Tucumán</Text>
             </Flex>
-            <Flex flexDir="row-reverse">
-                <Text fontSize={"1.625rem"} mr={8} ml={20}>
+            <Flex flexDir="row-reverse" mt={8}>
+                <Text fontSize={"1.625rem"} fontWeight="medium" mr={8} ml={20}>
                     ${"1499"}
                 </Text>
                 <Text fontSize={"1.625rem"} fontWeight="light">Total con envio: </Text>

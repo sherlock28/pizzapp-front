@@ -43,7 +43,7 @@ export function ItemCart({ product }) {
             </Box>
 
             <Box ml={100}>
-                <Text fontSize={"1.625rem"}>
+                <Text fontSize={"1.625rem"} fontWeight="medium">
                     ${product.price}
                 </Text>
             </Box>
