@@ -24,6 +24,7 @@ export function MenuLinks({ isOpen }) {
         pt={[4, 4, 0, 0]}
       >
         <MenuItem to="/">Inicio</MenuItem>
+        <MenuItem to="/cart">Carrito</MenuItem>
         <MenuItem to="/contacts">Contactos</MenuItem>
         {isLoggedIn ? <MenuAvatar fullname={user.fullname} /> : <MenuAuthButtons />}
       </Stack>

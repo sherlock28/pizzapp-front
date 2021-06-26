@@ -185,7 +185,12 @@ export function SignUpForm() {
           <Center>
             <Button
               onClick={handleSubmit(onSubmit)}
-              bg={colors.orange1}
+              bg={colors.btnCard}
+              color="white"
+              _hover={{
+                background: colors.hoverBtnCard,
+                color: "black"
+              }}
               type="submit"
               isLoading={isFetching}
               loadingText="Registrando"

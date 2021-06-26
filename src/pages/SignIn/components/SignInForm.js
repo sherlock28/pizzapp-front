@@ -57,7 +57,7 @@ export function SignInForm() {
         title: "Error",
         description: errorMessage,
         status: "error",
-        duration: 9000,
+        duration: 3000,
         isClosable: true,
       });
       dispatch(clearState());
@@ -122,7 +122,12 @@ export function SignInForm() {
           <Center>
             <Button
               onClick={handleSubmit(onSubmit)}
-              bg={colors.orange1}
+              bg={colors.btnCard}
+              color="white"
+              _hover={{
+                background: colors.hoverBtnCard,
+                color: "black"
+              }}
               type="submit"
               isLoading={isFetching}
               loadingText="Enviando"

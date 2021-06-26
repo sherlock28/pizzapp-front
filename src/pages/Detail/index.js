@@ -99,7 +99,6 @@ export function DetailPage() {
             </Box>
 
             <Box>
-
               <Button
                 m={4}
                 w={["240px", "100%", "80%", "80%", "80%"]}
