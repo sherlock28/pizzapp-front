@@ -15,6 +15,7 @@ export function ProductCard({ product }) {
 
     const handleClick = () => {
         if (!isLoggedIn) onOpen();
+        else console.log("agrega al carrito");
     }
 
     return (

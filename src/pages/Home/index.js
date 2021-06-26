@@ -13,9 +13,9 @@ export function HomePage() {
     <Heading fontWeight="bold" as="h1" size="2xl">Pizzapp</Heading>
     <SearchForm />
     <SimpleGrid columns={[1, 1, 2, 3]} spacing={10}>
-      {loading ?
-        <LoadingSkeleton />
-        : listProducts.map(product => {
+      {loading && <LoadingSkeleton />}
+      {
+        listProducts && listProducts.map(product => {
           return <ProductCard product={product} key={product._id} />
         })
       }

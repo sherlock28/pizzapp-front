@@ -10,8 +10,11 @@ export function useGetProducts() {
         dispatch(fetchAllProducts());
     }, [dispatch]);
 
-    const isWithoutResults = filteredProducts.length === 0;
-    let listProducts;
+    let isWithoutResults;
+    if (filteredProducts) {
+        isWithoutResults = filteredProducts.length === 0;
+    }
+    let listProducts = [];
     if (isWithoutResults) {
         listProducts = allProducts;
     } else {
