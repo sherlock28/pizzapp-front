@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Box,
   Link as LinkChakra,
@@ -14,60 +14,20 @@ import {
   Center,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { Link, useLocation } from "wouter";
-import { useForm } from "react-hook-form";
-import { useSelector, useDispatch } from "react-redux";
-import { loginAction, userSelector, clearState } from "reducers/userSlice";
+import { Link } from "wouter";
 import { validateEmail, validatePassword } from "./validations";
-import { useToast } from "@chakra-ui/react";
 import { colors } from "config/colorPalette";
+import { useSignInForm } from "./useSignInForm";
 
 export function SignInForm() {
-  // eslint-disable-next-line
-  const [_, setLocation] = useLocation();
-  const dispatch = useDispatch();
-  const {
+
+  const { onSubmit,
+    handleShowPass,
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const { isFetching, isSuccess, isError, errorMessage } = useSelector(
-    userSelector
-  );
-
-  const toast = useToast();
-
-  const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
-
-  const onSubmit = data => {
-    dispatch(loginAction(data));
-  };
-
-  useEffect(() => {
-    return () => {
-      dispatch(clearState());
-    };
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (isError) {
-      toast({
-        title: "Error",
-        description: errorMessage,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-      dispatch(clearState());
-    }
-
-    if (isSuccess) {
-      setLocation("/");
-    }
-  }, // eslint-disable-next-line 
-    [isError, isSuccess]);
+    errors,
+    isFetching,
+    showPass } = useSignInForm();
 
   return (
     <>
@@ -91,13 +51,13 @@ export function SignInForm() {
             <InputGroup>
               <Input
                 id="password"
-                type={show ? "text" : "password"}
+                type={showPass ? "text" : "password"}
                 placeholder="Contraseña"
                 {...register("password", validatePassword)}
               />
               <InputRightElement width="4.5rem">
-                <Button h="1.75rem" size="sm" onClick={handleClick}>
-                  {show ? <ViewOffIcon /> : <ViewIcon />}
+                <Button h="1.75rem" size="sm" onClick={handleShowPass}>
+                  {showPass ? <ViewOffIcon /> : <ViewIcon />}
                 </Button>
               </InputRightElement>
             </InputGroup>
