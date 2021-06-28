@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Box,
   Flex,
@@ -12,10 +12,6 @@ import {
   Center,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { registerAction, userSelector, clearState } from "reducers/userSlice";
-import { useLocation } from "wouter";
 import {
   validateUsername,
   validateFullname,
@@ -23,65 +19,18 @@ import {
   validatePhone,
   validatePassword,
 } from "./validations";
-import { useToast } from "@chakra-ui/react";
+import { useSignUpForm } from "./useSignUpForm";
 import { colors } from "config/colorPalette";
 
 export function SignUpForm() {
-  const dispatch = useDispatch();
-  // eslint-disable-next-line
-  const [_, setLocation] = useLocation();
-  const {
+
+  const { handleShowPass,
     register,
+    onSubmit,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const { isFetching, isSuccess, isError, errorMessage } = useSelector(
-    userSelector
-  );
-
-  const toast = useToast();
-
-  const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
-
-  const onSubmit = data => {
-    if (data.password === data.confirmpass) {
-      dispatch(registerAction(data));
-    }
-  };
-
-  useEffect(() => {
-    return () => {
-      dispatch(clearState());
-    };
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (isSuccess) {
-      dispatch(clearState());
-      toast({
-        title: "Success.",
-        description: "Usuario creado con exito.",
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-      });
-      setLocation("/login");
-    }
-
-    if (isError) {
-      toast({
-        title: "Error",
-        description: errorMessage,
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
-      dispatch(clearState());
-    }
-  },// eslint-disable-next-line 
-    [isSuccess, isError]);
+    errors,
+    showPass,
+    isFetching } = useSignUpForm();
 
   return (
     <>
@@ -153,13 +102,13 @@ export function SignUpForm() {
               <InputGroup>
                 <Input
                   id="password"
-                  type={show ? "text" : "password"}
+                  type={showPass ? "text" : "password"}
                   placeholder="Contraseña"
                   {...register("password", validatePassword)}
                 />
                 <InputRightElement width="4.5rem">
-                  <Button h="1.75rem" size="sm" onClick={handleClick}>
-                    {show ? <ViewOffIcon /> : <ViewIcon />}
+                  <Button h="1.75rem" size="sm" onClick={handleShowPass}>
+                    {showPass ? <ViewOffIcon /> : <ViewIcon />}
                   </Button>
                 </InputRightElement>
               </InputGroup>
@@ -172,7 +121,7 @@ export function SignUpForm() {
               <FormLabel>Confirma tu contraseña</FormLabel>
               <Input
                 id="confirmpass"
-                type={show ? "text" : "password"}
+                type={showPass ? "text" : "password"}
                 placeholder="Confirmación de contraseña"
                 {...register("confirmpass", validatePassword)}
               />
