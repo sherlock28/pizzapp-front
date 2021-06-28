@@ -1,28 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Box, Image, Center, Text, Flex, Button } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import { LoadingSkeleton } from "./components/LoadingSkeleton";
-import { useRoute } from "wouter";
-import { products } from "services";
 import { colors } from "config/colorPalette";
+import { useGetProductById } from "hooks/useGetProductById";
 
 export function DetailPage() {
-  // eslint-disable-next-line 
-  const [_, params] = useRoute("/detail/:id");
-  const [product, setProduct] = useState(null);
 
-
-  useEffect(() => {
-    const { id } = params
-    products.getAllProductsById({ idProduct: id })
-      .then(res => {
-        res === [] ? setProduct(null) :
-          setProduct(res.data.product);
-      })
-      .catch(err => console.error(err));
-    // eslint-disable-next-line
-  }, []);
-
+  const { product } = useGetProductById();
 
   if (product === null) {
     return <LoadingSkeleton />
