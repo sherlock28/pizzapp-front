@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Link } from "wouter";
-import { validateEmail, validatePassword } from "./validations";
+import { validateEmail, validatePassword } from "config/validations";
 import { colors } from "config/colorPalette";
 import { useSignInForm } from "./useSignInForm";
 

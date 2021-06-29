@@ -13,12 +13,12 @@ import {
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
-  validateUsername,
-  validateFullname,
-  validateEmail,
-  validatePhone,
-  validatePassword,
-} from "./validations";
+  validateUsernameRegister,
+  validateFullnameRegister,
+  validateEmailRegister,
+  validatePhoneRegister,
+  validatePasswordRegister,
+} from "config/validations";
 import { useSignUpForm } from "./useSignUpForm";
 import { colors } from "config/colorPalette";
 
@@ -43,7 +43,7 @@ export function SignUpForm() {
                 id="username"
                 type="text"
                 placeholder="Nombre de usuario"
-                {...register("username", validateUsername)}
+                {...register("username", validateUsernameRegister)}
                 w={["100%", "100%", "48%", "48%", "48%"]}
               />
               <FormErrorMessage>
@@ -59,7 +59,7 @@ export function SignUpForm() {
                 id="fullname"
                 type="text"
                 placeholder="Nombre"
-                {...register("fullname", validateFullname)}
+                {...register("fullname", validateFullnameRegister)}
               />
               <FormErrorMessage>
                 {errors.fullname && errors.fullname.message}
@@ -74,7 +74,7 @@ export function SignUpForm() {
                 id="email"
                 type="email"
                 placeholder="Email"
-                {...register("email", validateEmail)}
+                {...register("email", validateEmailRegister)}
               />
               <FormErrorMessage>
                 {errors.email && errors.email.message}
@@ -88,7 +88,7 @@ export function SignUpForm() {
                 type="text"
                 placeholder="Celular"
                 w={"200px"}
-                {...register("phone", validatePhone)}
+                {...register("phone", validatePhoneRegister)}
               />
               <FormErrorMessage>
                 {errors.phone && errors.phone.message}
@@ -104,7 +104,7 @@ export function SignUpForm() {
                   id="password"
                   type={showPass ? "text" : "password"}
                   placeholder="Contraseña"
-                  {...register("password", validatePassword)}
+                  {...register("password", validatePasswordRegister)}
                 />
                 <InputRightElement width="4.5rem">
                   <Button h="1.75rem" size="sm" onClick={handleShowPass}>
@@ -123,7 +123,7 @@ export function SignUpForm() {
                 id="confirmpass"
                 type={showPass ? "text" : "password"}
                 placeholder="Confirmación de contraseña"
-                {...register("confirmpass", validatePassword)}
+                {...register("confirmpass", validatePasswordRegister)}
               />
               <FormErrorMessage>
                 {errors.confirmpass && errors.confirmpass.message}
