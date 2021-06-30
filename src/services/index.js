@@ -5,6 +5,8 @@ import { signUpService } from "./auth/signUpService";
 import { signInService } from "./auth/signInService";
 import { signOutService } from "./auth/signOutService";
 
+import { registerOrder } from "./order/registerOrder";
+
 export const auth = {
   signUpService,
   signInService,
@@ -14,4 +16,8 @@ export const auth = {
 export const products = {
   getAllProducts,
   getAllProductsById,
+};
+
+export const orders = {
+  registerOrder,
 };
