@@ -10,7 +10,7 @@ export const userSlice = createSlice({
     isFetching: false,
     isSuccess: false,
     isError: false,
-    errorMessage: '',
+    errorMessage: "",
   },
   reducers: {
     authLoading: (state, action) => {
@@ -32,7 +32,7 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.isSuccess = false;
       state.isError = false;
-      state.errorMessage = '';
+      state.errorMessage = "";
     },
     registerSuccess: (state, action) => {
       state.isFetching = false;
@@ -46,13 +46,19 @@ export const userSlice = createSlice({
     clearState: (state, action) => {
       state.isSuccess = false;
       state.isError = false;
-      state.errorMessage = ""
-    }
+      state.errorMessage = "";
+    },
   },
 });
 
-export const { authLoading, loginSuccess, logoutSuccess, registerSuccess, authFailed, clearState } =
-  userSlice.actions;
+export const {
+  authLoading,
+  loginSuccess,
+  logoutSuccess,
+  registerSuccess,
+  authFailed,
+  clearState,
+} = userSlice.actions;
 
 export const loginAction = data => async dispatch => {
   dispatch(authLoading());
@@ -88,7 +94,7 @@ export const logoutAction = data => async dispatch => {
   } catch (err) {
     dispatch(authFailed(err.message));
   }
-}
+};
 
 export const registerAction = data => async dispatch => {
   dispatch(authLoading());
@@ -108,6 +114,6 @@ export const registerAction = data => async dispatch => {
   }
 };
 
-export const userSelector = (state) => state.user;
+export const userSelector = state => state.user;
 
 export default userSlice.reducer;
