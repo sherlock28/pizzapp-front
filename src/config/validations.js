@@ -8,6 +8,14 @@ export const validateEmail = {
   },
 };
 
+export const validateFullname = {
+  required: "Debes ingresar tu nombre.",
+  pattern: {
+    value: /^[a-zA-ZÀ-ÿ\ñ\Ñ]+(\s*[a-zA-ZÀ-ÿ\ñ\Ñ]*)*[a-zA-ZÀ-ÿ\ñ\Ñ]+$/,
+    message: "Ingresa solo caracteres alfabéticos.",
+  },
+};
+
 export const validatePassword = {
   required: "Debes ingresar tu contraseña",
 };
