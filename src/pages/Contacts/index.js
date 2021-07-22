@@ -1,5 +1,6 @@
 import React from "react";
+import { ContactArea } from "./components/ContactArea";
 
 export function ContactsPage() {
-  return <h1>Contactos</h1>;
+  return <ContactArea />;
 }
