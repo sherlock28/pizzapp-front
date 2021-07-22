@@ -1,27 +1,22 @@
 import React from "react";
-import logo from "assets/logo.png"
+import logo from "assets/logo.png";
 import { Box, Flex, Text, Image } from "@chakra-ui/react";
 import { Link } from "wouter";
+import { paths } from "config/paths";
 
 export function Logo(props) {
   return (
     <Box {...props}>
-      <Link to="/">
-        <Flex h="80px" 
+      <Link to={paths.home}>
+        <Flex
+          h="80px"
           alignItems="center"
           _hover={{
             cursor: "pointer",
-          }}>
-          <Image
-            borderRadius="full"
-            boxSize="80px"
-            src={logo}
-            alt="Logo"
-          />
-          <Text
-            fontSize={40}
-            fontWeight="bold"
-          >
+          }}
+        >
+          <Image borderRadius="full" boxSize="80px" src={logo} alt="Logo" />
+          <Text fontSize={40} fontWeight="bold">
             Pizzapp
           </Text>
         </Flex>

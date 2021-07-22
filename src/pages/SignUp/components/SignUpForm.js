@@ -23,14 +23,15 @@ import { useSignUpForm } from "./useSignUpForm";
 import { colors } from "config/colorPalette";
 
 export function SignUpForm() {
-
-  const { handleShowPass,
+  const {
+    handleShowPass,
     register,
     onSubmit,
     handleSubmit,
     errors,
     showPass,
-    isFetching } = useSignUpForm();
+    isFetching,
+  } = useSignUpForm();
 
   return (
     <>
@@ -138,7 +139,7 @@ export function SignUpForm() {
               color="white"
               _hover={{
                 background: colors.hoverBtnCard,
-                color: "black"
+                color: "black",
               }}
               type="submit"
               isLoading={isFetching}

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 // eslint-disable-next-line
 import { useSelector, useDispatch } from "react-redux";
 // import { loginAction, userSelector, clearState } from "reducers/userSlice";
-import { useToast } from "@chakra-ui/react";
+// import { useToast } from "@chakra-ui/react";
 
 export function useContactForm() {
   // eslint-disable-next-line
@@ -19,7 +19,7 @@ export function useContactForm() {
   //   const { isFetching, isSuccess, isError, errorMessage } =
   //     useSelector(userSelector);
 
-  const toast = useToast();
+  // const toast = useToast();
 
   const onSubmit = data => {
     console.log(data);

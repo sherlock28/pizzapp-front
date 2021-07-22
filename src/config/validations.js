@@ -11,6 +11,7 @@ export const validateEmail = {
 export const validateFullname = {
   required: "Debes ingresar tu nombre.",
   pattern: {
+    // eslint-disable-next-line
     value: /^[a-zA-ZÀ-ÿ\ñ\Ñ]+(\s*[a-zA-ZÀ-ÿ\ñ\Ñ]*)*[a-zA-ZÀ-ÿ\ñ\Ñ]+$/,
     message: "Ingresa solo caracteres alfabéticos.",
   },
@@ -31,6 +32,7 @@ export const validateUsernameRegister = {
 export const validateFullnameRegister = {
   required: "El nombre es requerido.",
   pattern: {
+    // eslint-disable-next-line
     value: /^[a-zA-ZÀ-ÿ\ñ\Ñ]+(\s*[a-zA-ZÀ-ÿ\ñ\Ñ]*)*[a-zA-ZÀ-ÿ\ñ\Ñ]+$/,
     message: "Ingresa solo caracteres alfabéticos.",
   },

@@ -5,11 +5,10 @@ import { MenuAvatar } from "./MenuAvatar";
 import { MenuAuthButtons } from "./MenuAuthButtons";
 import { useSelector } from "react-redux";
 import { userSelector } from "reducers/userSlice";
+import { paths } from "config/paths";
 
 export function MenuLinks({ isOpen }) {
-  const { isLoggedIn, user } = useSelector(
-    userSelector
-  );
+  const { isLoggedIn, user } = useSelector(userSelector);
 
   return (
     <Box
@@ -23,10 +22,14 @@ export function MenuLinks({ isOpen }) {
         direction={["column", "row", "row", "row"]}
         pt={[4, 4, 0, 0]}
       >
-        <MenuItem to="/">Inicio</MenuItem>
-        <MenuItem to="/cart">Carrito</MenuItem>
-        <MenuItem to="/contacts">Contactos</MenuItem>
-        {isLoggedIn ? <MenuAvatar fullname={user.fullname} /> : <MenuAuthButtons />}
+        <MenuItem to={paths.home}>Inicio</MenuItem>
+        <MenuItem to={paths.cart}>Carrito</MenuItem>
+        <MenuItem to={paths.contacts}>Contactos</MenuItem>
+        {isLoggedIn ? (
+          <MenuAvatar fullname={user.fullname} />
+        ) : (
+          <MenuAuthButtons />
+        )}
       </Stack>
     </Box>
   );

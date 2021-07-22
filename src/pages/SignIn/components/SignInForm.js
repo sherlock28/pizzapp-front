@@ -18,16 +18,18 @@ import { Link } from "wouter";
 import { validateEmail, validatePassword } from "config/validations";
 import { colors } from "config/colorPalette";
 import { useSignInForm } from "./useSignInForm";
+import { paths } from "config/paths";
 
 export function SignInForm() {
-
-  const { onSubmit,
+  const {
+    onSubmit,
     handleShowPass,
     register,
     handleSubmit,
     errors,
     isFetching,
-    showPass } = useSignInForm();
+    showPass,
+  } = useSignInForm();
 
   return (
     <>
@@ -71,7 +73,7 @@ export function SignInForm() {
               <Checkbox {...register("remindMe")}>Recordarme</Checkbox>
             </Box>
             <Box>
-              <Link to="/forgetterpass">
+              <Link to={paths.forgetpass}>
                 <LinkChakra color={colors.orangeBg}>
                   ¿Olvidaste tu contraseña?
                 </LinkChakra>
@@ -86,7 +88,7 @@ export function SignInForm() {
               color="white"
               _hover={{
                 background: colors.hoverBtnCard,
-                color: "black"
+                color: "black",
               }}
               type="submit"
               isLoading={isFetching}
