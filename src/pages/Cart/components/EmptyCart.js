@@ -6,6 +6,7 @@ import { useLocation } from "wouter";
 import { paths } from "config/paths";
 
 export function EmptyCart() {
+  // eslint-disable-next-line
   const [_, setLocation] = useLocation();
 
   return (
