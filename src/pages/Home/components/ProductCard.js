@@ -1,35 +1,16 @@
 import React from "react";
-import {
-  Box,
-  Image,
-  Text,
-  Flex,
-  Button,
-  Badge,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Box, Image, Text, Flex, Button, Badge } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import { Link } from "wouter";
-import { useSelector, useDispatch } from "react-redux";
-import { userSelector } from "reducers/userSlice";
-import { cartSelector, addProductToCart } from "reducers/cartSlice";
 import { LoginModal } from "components/LoginModal";
+import { useAddProductToCart } from "../hooks/useAddProductToCart";
 
 import { colors } from "config/colorPalette";
 import { paths } from "config/paths";
 
 export function ProductCard({ product }) {
-  const dispatch = useDispatch();
-  const { isLoggedIn } = useSelector(userSelector);
-  const { cart } = useSelector(cartSelector);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { addToCart, isOpen, onClose } = useAddProductToCart();
 
-  const addToCart = id => {
-    if (!isLoggedIn) onOpen();
-    else dispatch(addProductToCart(id));
-  };
-
-  console.log({ cart });
   return (
     <>
       <Box

@@ -15,7 +15,7 @@ export const cartSlice = createSlice({
       if (state.isFetching === false) state.isFetching = true;
     },
     addProductToCart: (state, action) => {
-      state.cart = [...state.cart, action.payload];
+      state.cart = action.payload;
     },
     removeProductFromCart: (state, action) => {
       state.cart = state.cart.filter(item => item.id !== action.payload.id);
