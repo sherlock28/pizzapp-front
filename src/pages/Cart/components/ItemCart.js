@@ -65,7 +65,7 @@ export function ItemCart({ product }) {
 
       <Box ml={100}>
         <Text fontSize={"1.625rem"} fontWeight="medium">
-          ${product.price}
+          ${product.subtotal}
         </Text>
       </Box>
     </Flex>

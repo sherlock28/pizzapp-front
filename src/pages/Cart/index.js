@@ -10,10 +10,15 @@ import {
 import { useIsLogged } from "hooks/useIsLogged";
 import { ItemCart } from "./components/ItemCart";
 import { colors } from "config/colorPalette";
-import { pizzasTest } from "./data";
+import { useSelector } from "react-redux";
+import { cartSelector } from "reducers/cartSlice";
+import { useGetTotal } from "./hooks/useGetTotal";
 
 export function CartPage() {
   useIsLogged();
+
+  const { cart } = useSelector(cartSelector);
+  const { total } = useGetTotal({ cart });
 
   return (
     <>
@@ -22,7 +27,7 @@ export function CartPage() {
       </Heading>
       <Container maxW="container.lg" mt={4}>
         <Flex flexDir="column" w="100%">
-          {pizzasTest.map(product => (
+          {cart.map(product => (
             <ItemCart product={product} key={product._id} />
           ))}
         </Flex>
@@ -43,7 +48,7 @@ export function CartPage() {
         </Flex>
         <Flex flexDir="row-reverse" mt={8}>
           <Text fontSize={"1.625rem"} fontWeight="medium" mr={8} ml={20}>
-            ${"1499"}
+            ${total}
           </Text>
           <Text fontSize={"1.625rem"} fontWeight="light">
             Total con envio:{" "}

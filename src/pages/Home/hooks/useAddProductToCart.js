@@ -23,6 +23,7 @@ export function useAddProductToCart() {
         const newProduct = {
           count: 1,
           ...product[0],
+          subtotal: product[0].price * 1,
         };
         const newProducts = [...cart, newProduct];
         dispatch(addProductToCart(newProducts));
@@ -33,6 +34,7 @@ export function useAddProductToCart() {
         const productUpdated = {
           count: newCount,
           ...product[0],
+          subtotal: product[0].price * newCount,
         };
         const newProducts = [...restProduct, productUpdated];
         dispatch(addProductToCart(newProducts));
@@ -45,7 +47,6 @@ export function useAddProductToCart() {
       duration: 1200,
       isClosable: true,
     });
-    console.log({ cart });
   };
 
   return { addToCart, isOpen, onClose };
