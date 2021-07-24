@@ -12,8 +12,16 @@ import {
   NumberDecrementStepper,
 } from "@chakra-ui/react";
 import { colors } from "config/colorPalette";
+import { useDispatch } from "react-redux";
+import { removeProductFromCart } from "reducers/cartSlice";
 
 export function ItemCart({ product }) {
+  const dispatch = useDispatch();
+
+  const removeProduct = id => {
+    dispatch(removeProductFromCart(id));
+  };
+
   return (
     <Flex
       justifyContent="center"
@@ -39,7 +47,7 @@ export function ItemCart({ product }) {
           color={colors.orangeBg}
           size="md"
           variant="link"
-          onClick={() => console.log("eliminar")}
+          onClick={() => removeProduct(product._id)}
           fontSize={14}
           mt={6}
           _hover={{

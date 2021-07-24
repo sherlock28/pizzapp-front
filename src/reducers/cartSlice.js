@@ -18,7 +18,7 @@ export const cartSlice = createSlice({
       state.cart = action.payload;
     },
     removeProductFromCart: (state, action) => {
-      state.cart = state.cart.filter(item => item.id !== action.payload.id);
+      state.cart = state.cart.filter(item => item._id !== action.payload);
     },
     buySuccess: (state, action) => {
       state.isFetching = false;
