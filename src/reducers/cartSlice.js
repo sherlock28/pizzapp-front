@@ -17,6 +17,9 @@ export const cartSlice = createSlice({
     addProductToCart: (state, payload) => {
       state.cart = state.cart.concat(payload.product);
     },
+    removeProductFromCart: (state, payload) => {
+      state.cart = state.cart.filter(item => item.id !== payload.id);
+    },
     buySuccess: (state, payload) => {
       state.isFetching = false;
       state.isSuccess = true;
@@ -37,6 +40,7 @@ export const cartSlice = createSlice({
 export const {
   cartLoading,
   addProductToCart,
+  removeProductFromCart,
   buySuccess,
   buyFailed,
   clearState,
