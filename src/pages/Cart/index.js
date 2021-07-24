@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { useIsLogged } from "hooks/useIsLogged";
 import { ItemCart } from "./components/ItemCart";
+import { EmptyCart } from "./components/EmptyCart";
 import { colors } from "config/colorPalette";
 import { useSelector } from "react-redux";
 import { cartSelector } from "reducers/cartSlice";
@@ -19,6 +20,10 @@ export function CartPage() {
 
   const { cart } = useSelector(cartSelector);
   const { total } = useGetTotal({ cart });
+
+  if (cart.length === 0) {
+    return <EmptyCart />;
+  }
 
   return (
     <>
