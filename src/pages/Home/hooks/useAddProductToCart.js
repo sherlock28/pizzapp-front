@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { userSelector } from "reducers/userSlice";
 import { addProductToCart, cartSelector } from "reducers/cartSlice";
+import { productSelector } from "reducers/productSlice";
 import { useDisclosure } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 
@@ -8,27 +9,30 @@ export function useAddProductToCart() {
   const toast = useToast();
   const dispatch = useDispatch();
   const { cart } = useSelector(cartSelector);
+  const { products } = useSelector(productSelector);
   const { isLoggedIn } = useSelector(userSelector);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const addToCart = id => {
     if (!isLoggedIn) onOpen();
     else {
-      const productToAdd = cart.filter(product => product.id === id);
+      const productToAdd = cart.filter(product => product._id === id);
 
       if (productToAdd.length === 0) {
+        const product = products.filter(product => product._id === id);
         const newProduct = {
-          id,
           count: 1,
+          ...product[0],
         };
         const newProducts = [...cart, newProduct];
         dispatch(addProductToCart(newProducts));
       } else {
-        const restProduct = cart.filter(product => product.id !== id);
+        const restProduct = cart.filter(product => product._id !== id);
+        const product = products.filter(product => product._id === id);
         const newCount = productToAdd[0].count + 1;
         const productUpdated = {
-          id,
           count: newCount,
+          ...product[0],
         };
         const newProducts = [...restProduct, productUpdated];
         dispatch(addProductToCart(newProducts));
@@ -41,6 +45,7 @@ export function useAddProductToCart() {
       duration: 1200,
       isClosable: true,
     });
+    console.log({ cart });
   };
 
   return { addToCart, isOpen, onClose };
