@@ -10,22 +10,26 @@ import {
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import { Link } from "wouter";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { userSelector } from "reducers/userSlice";
+import { cartSelector, addProductToCart } from "reducers/cartSlice";
 import { LoginModal } from "components/LoginModal";
 
 import { colors } from "config/colorPalette";
 import { paths } from "config/paths";
 
 export function ProductCard({ product }) {
+  const dispatch = useDispatch();
   const { isLoggedIn } = useSelector(userSelector);
+  const { cart } = useSelector(cartSelector);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleClick = () => {
+  const addToCart = id => {
     if (!isLoggedIn) onOpen();
-    else console.log("agrega al carrito");
+    else dispatch(addProductToCart(id));
   };
 
+  console.log({ cart });
   return (
     <>
       <Box
@@ -90,7 +94,7 @@ export function ProductCard({ product }) {
 
         <Flex justify="center">
           <Button
-            onClick={handleClick}
+            onClick={() => addToCart(product._id)}
             m={4}
             w="80%"
             bg={colors.btnCard}

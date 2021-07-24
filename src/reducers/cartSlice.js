@@ -11,16 +11,16 @@ export const cartSlice = createSlice({
     errorMessage: "",
   },
   reducers: {
-    cartLoading: (state, payload) => {
+    cartLoading: (state, action) => {
       if (state.isFetching === false) state.isFetching = true;
     },
-    addProductToCart: (state, payload) => {
-      state.cart = state.cart.concat(payload.product);
+    addProductToCart: (state, action) => {
+      state.cart = [...state.cart, action.payload];
     },
-    removeProductFromCart: (state, payload) => {
-      state.cart = state.cart.filter(item => item.id !== payload.id);
+    removeProductFromCart: (state, action) => {
+      state.cart = state.cart.filter(item => item.id !== action.payload.id);
     },
-    buySuccess: (state, payload) => {
+    buySuccess: (state, action) => {
       state.isFetching = false;
       state.isSuccess = true;
     },
@@ -29,7 +29,8 @@ export const cartSlice = createSlice({
       state.isError = true;
       state.errorMessage = action.payload.message;
     },
-    clearState: (state, payload) => {
+    clearState: (state, action) => {
+      state.cart = [];
       state.isSuccess = false;
       state.isError = false;
       state.errorMessage = "";
