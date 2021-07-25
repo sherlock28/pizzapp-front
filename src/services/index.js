@@ -1,5 +1,5 @@
 import { getAllProducts } from "./products/getAllProducts";
-import { getAllProductsById } from "./products/getProductById";
+import { getProductById } from "./products/getProductById";
 
 import { signUpService } from "./auth/signUpService";
 import { signInService } from "./auth/signInService";
@@ -15,7 +15,7 @@ export const auth = {
 
 export const products = {
   getAllProducts,
-  getAllProductsById,
+  getProductById,
 };
 
 export const orders = {

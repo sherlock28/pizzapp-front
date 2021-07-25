@@ -1,6 +1,6 @@
 import { API_URL } from "../settings";
 
-export function getAllProductsById({ idProduct }) {
+export function getProductById({ idProduct }) {
   return fetch(`${API_URL}/product/${idProduct}`)
     .then(response => response.json())
     .then(res => res)
