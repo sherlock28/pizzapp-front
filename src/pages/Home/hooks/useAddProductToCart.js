@@ -40,13 +40,14 @@ export function useAddProductToCart() {
         dispatch(addProductToCart(newProducts));
       }
     }
-    toast({
-      title: "Success.",
-      description: "Producto agregado.",
-      status: "success",
-      duration: 1200,
-      isClosable: true,
-    });
+    if (isLoggedIn)
+      toast({
+        title: "Success.",
+        description: "Producto agregado.",
+        status: "success",
+        duration: 1200,
+        isClosable: true,
+      });
   };
 
   return { addToCart, isOpen, onClose };
