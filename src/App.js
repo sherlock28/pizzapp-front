@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <Container maxW="container.lg" centerContent>
+      <Container maxW="container.lg" centerContent minH="54vh">
         <Routes />
       </Container>
       <Footer />
