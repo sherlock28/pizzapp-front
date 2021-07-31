@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { validateEmail, validatePassword } from "config/validations";
-import { useModalLogin } from "./useModalLogin";
+import { useModalLogin } from "./hooks/useModalLogin";
 
 import { colors } from "config/colorPalette";
 
