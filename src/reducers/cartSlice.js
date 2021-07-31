@@ -20,6 +20,9 @@ export const cartSlice = createSlice({
     removeProductFromCart: (state, action) => {
       state.cart = state.cart.filter(item => item._id !== action.payload);
     },
+    updateCountFromCart: (state, action) => {
+      state.cart = action.payload;
+    },
     buySuccess: (state, action) => {
       state.isFetching = false;
       state.isSuccess = true;
@@ -42,6 +45,7 @@ export const {
   cartLoading,
   addProductToCart,
   removeProductFromCart,
+  updateCountFromCart,
   buySuccess,
   buyFailed,
   clearState,
