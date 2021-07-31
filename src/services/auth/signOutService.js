@@ -5,7 +5,7 @@ export function signOutService({ jwt }) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: jwt,
+      Authorization: "Bearer " + jwt,
     },
     body: JSON.stringify({ jwt }),
   })

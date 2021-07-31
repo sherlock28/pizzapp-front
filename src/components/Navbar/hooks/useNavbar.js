@@ -9,7 +9,7 @@ export function useNavbar() {
   // eslint-disable-next-line
   const [_, setLocation] = useLocation();
   const { token } = useSelector(userSelector);
-  // eslint-disable-next-line
+  // eslint-disable-next-line 
   const { colorMode, toggleColorMode } = useColorMode();
 
   const handleLogout = () => {
