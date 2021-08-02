@@ -1,7 +1,7 @@
-import { API_URL } from "../settings";
+import { API_RESOURCES } from "../settings";
 
 export function getProductById({ idProduct }) {
-  return fetch(`${API_URL}/product/${idProduct}`)
+  return fetch(`${API_RESOURCES.products}/${idProduct}`)
     .then(response => response.json())
     .then(res => res)
     .catch(err => {

@@ -1,7 +1,7 @@
-import { API_URL } from "../settings";
+import { API_RESOURCES } from "../settings";
 
 export function registerOrder({ order, jwt }) {
-  return fetch(`${API_URL}/order`, {
+  return fetch(`${API_RESOURCES.orders}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
