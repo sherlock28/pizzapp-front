@@ -1,7 +1,7 @@
-import { API_URL } from "../settings";
+import { API_RESOURCES } from "../settings";
 
 export function signUpService({ body }) {
-  return fetch(`${API_URL}/signup`, {
+  return fetch(`${API_RESOURCES.auth.signup}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

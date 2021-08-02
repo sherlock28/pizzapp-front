@@ -1,7 +1,7 @@
-import { API_URL } from "../settings";
+import { API_RESOURCES } from "../settings";
 
 export function signOutService({ jwt }) {
-  return fetch(`${API_URL}/signout`, {
+  return fetch(`${API_RESOURCES.auth.signout}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
