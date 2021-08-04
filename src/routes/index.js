@@ -7,6 +7,7 @@ import { ContactsPage } from "pages/Contacts";
 import { DetailPage } from "pages/Detail";
 import { MyAccountPage } from "pages/MyAccount";
 import { CartPage } from "pages/Cart";
+import { NotFoundPage } from "pages/NotFound";
 
 import { paths } from "config/paths";
 
@@ -21,7 +22,9 @@ export function Routes() {
         <Route path={paths.cart} component={CartPage} exact />
         <Route path={paths.contacts} component={ContactsPage} exact />
         <Route path={paths.detail} component={DetailPage} exact />
-        <Route>404, Not Found!</Route>
+        <Route>
+          <NotFoundPage />
+        </Route>
       </Switch>
     </>
   );

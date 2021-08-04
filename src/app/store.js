@@ -21,6 +21,7 @@ const persistLocalConfig = {
   storage: storageLocal,
 };
 
+// eslint-disable-next-line 
 const persistSessionConfig = {
   key: "root",
   storage: storageSession,

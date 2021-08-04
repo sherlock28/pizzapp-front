@@ -8,8 +8,7 @@ import {
   MenuDivider,
   Avatar,
   Switch,
-  Text,
-  useColorMode,
+  Text
 } from "@chakra-ui/react";
 import { colors } from "config/colorPalette";
 import { useNavbar } from "../hooks/useNavbar";
