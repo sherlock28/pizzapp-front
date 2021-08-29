@@ -1,14 +1,16 @@
 import React from "react";
-import { Box, Stack } from "@chakra-ui/react";
+import { Box, Stack, Badge } from "@chakra-ui/react";
 import { MenuItem } from "./MenuItem";
 import { MenuAvatar } from "./MenuAvatar";
 import { MenuAuthButtons } from "./MenuAuthButtons";
 import { useSelector } from "react-redux";
 import { userSelector } from "reducers/userSlice";
+import { cartSelector } from "reducers/cartSlice";
 import { paths } from "config/paths";
 
 export function MenuLinks({ isOpen }) {
   const { isLoggedIn, user } = useSelector(userSelector);
+  const { countProducts } = useSelector(cartSelector);
 
   return (
     <Box
@@ -23,7 +25,16 @@ export function MenuLinks({ isOpen }) {
         pt={[4, 4, 0, 0]}
       >
         <MenuItem to={paths.home}>Inicio</MenuItem>
-        <MenuItem to={paths.cart}>Carrito</MenuItem>
+        <MenuItem to={paths.cart}>
+          Carrito
+          {countProducts > 0 ? (
+            <Badge colorScheme="orange" ml={2} mb={3}>
+              {countProducts}
+            </Badge>
+          ) : (
+            ""
+          )}
+        </MenuItem>
         <MenuItem to={paths.contacts}>Contactos</MenuItem>
         {isLoggedIn ? (
           <MenuAvatar fullname={user.fullname} />

@@ -5,6 +5,7 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState: {
     cart: [],
+    countProducts: 0,
     isFetching: false,
     isSuccess: false,
     isError: false,
@@ -16,12 +17,15 @@ export const cartSlice = createSlice({
     },
     addProductToCart: (state, action) => {
       state.cart = action.payload;
+      state.countProducts = state.countProducts + 1;
     },
     removeProductFromCart: (state, action) => {
       state.cart = state.cart.filter(item => item._id !== action.payload);
+      state.countProducts = state.cart.map(p => p.count).reduce((a, b) => a + b, 0);
     },
     updateCountFromCart: (state, action) => {
       state.cart = action.payload;
+      state.countProducts = state.cart.map(p => p.count).reduce((a, b) => a + b, 0);
     },
     buySuccess: (state, action) => {
       state.isFetching = false;

@@ -14,6 +14,7 @@ export function useCartOptions() {
   };
 
   const updateCount = (id, count) => {
+    count = parseInt(count)
     const index = cart.findIndex((product) => product._id === id);
     let product = cart.find((product) => product._id === id);
 
