@@ -1,16 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 // import { orders } from "services";
 
+const initialState = {
+  cart: [],
+  countProducts: 0,
+  isFetching: false,
+  isSuccess: false,
+  isError: false,
+  errorMessage: "",
+};
+
 export const cartSlice = createSlice({
   name: "cart",
-  initialState: {
-    cart: [],
-    countProducts: 0,
-    isFetching: false,
-    isSuccess: false,
-    isError: false,
-    errorMessage: "",
-  },
+  initialState,
   reducers: {
     cartLoading: (state, action) => {
       if (state.isFetching === false) state.isFetching = true;

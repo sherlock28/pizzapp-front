@@ -1,15 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { products } from "services";
 
+const initialState = {
+  products: [],
+  product: null,
+  filteredProducts: [],
+  loading: false,
+  error: null,
+};
+
 export const productSlice = createSlice({
   name: "products",
-  initialState: {
-    products: [],
-    product: null,
-    filteredProducts: [],
-    loading: false,
-    error: null,
-  },
+  initialState,
   reducers: {
     productsReceived: (state, action) => {
       if (state.loading === true) {

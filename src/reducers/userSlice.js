@@ -1,17 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { auth } from "services";
 
+const initialState = {
+  isLoggedIn: false,
+  user: null,
+  token: null,
+  isFetching: false,
+  isSuccess: false,
+  isError: false,
+  errorMessage: "",
+};
+
 export const userSlice = createSlice({
   name: "user",
-  initialState: {
-    isLoggedIn: false,
-    user: null,
-    token: null,
-    isFetching: false,
-    isSuccess: false,
-    isError: false,
-    errorMessage: "",
-  },
+  initialState,
   reducers: {
     authLoading: (state, action) => {
       if (state.isFetching === false) {
